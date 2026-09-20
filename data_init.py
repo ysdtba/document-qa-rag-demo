@@ -117,7 +117,7 @@ def semantic_chunk_documents(documents: list[Document]) -> list:
 
     # 注入 section 元数据，便于 RAG 回答时引用来源
     for node in final_nodes:
-        headers = node.metadata.get("header_path", "") or node.metadata.get("Header Path", "")
+        headers = (node.metadata.get("header_path", "") or node.metadata.get("Header Path", "")).strip(" /")
         source_file = node.metadata.get("file_name", "")
         if headers:
             node.metadata["section"] = f"{source_file} / {headers}" if source_file else headers

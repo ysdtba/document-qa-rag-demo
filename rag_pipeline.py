@@ -25,6 +25,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any, AsyncGenerator
 
@@ -106,8 +107,42 @@ def _build_reranker():
     )
 
 
+def _phrase_overlap_score(question: str, content: str) -> int:
+    focused_question = re.sub(
+        r"(?:示例|这份|该)?文档(?:中的|里的|中|里|的)?|请问|是多少|是什么|多少|什么|如何",
+        "",
+        question,
+    )
+    query = "".join(char.lower() for char in focused_question if char.isalnum())
+    text = "".join(char.lower() for char in content if char.isalnum())
+    return sum(
+        width * width
+        for width in (2, 3, 4)
+        for start in range(max(0, len(query) - width + 1))
+        if query[start:start + width] in text
+    )
+
+
+def _source_heading(node: NodeWithScore) -> str:
+    first_line = node.get_content().strip().splitlines()[0] if node.get_content().strip() else ""
+    match = re.match(r"^#{1,6}\s+(.+)$", first_line)
+    if match:
+        return match.group(1).strip()
+    return str(node.metadata.get("section", "相关片段")).split("/")[-1].strip()
+
+
+def _source_preview(node: NodeWithScore) -> str:
+    lines = [
+        re.sub(r"^\s*(?:[-*]\s+|\d+\.\s*)", "", line).replace("**", "").strip()
+        for line in node.get_content().splitlines()
+        if line.strip() and not line.lstrip().startswith(("#", ">"))
+    ]
+    excerpt = " ".join(lines) or _source_heading(node)
+    return excerpt[:120] + ("…" if len(excerpt) > 120 else "")
+
+
 class _MockReranker:
-    """Mock Reranker：按 query 与 chunk 的字符重叠率近似排序。"""
+    """Mock Reranker：按 query 与 chunk 的短语重叠近似排序。"""
 
     def __init__(self, top_n: int = 3) -> None:
         self.top_n = top_n
@@ -118,14 +153,11 @@ class _MockReranker:
         if not query_str:
             return nodes[: self.top_n]
 
-        def _overlap_score(node: NodeWithScore) -> float:
-            q_chars = set(query_str)
-            c_chars = set(node.get_content())
-            if not q_chars:
-                return 0.0
-            return len(q_chars & c_chars) / len(q_chars)
-
-        ranked = sorted(nodes, key=_overlap_score, reverse=True)
+        ranked = sorted(
+            nodes,
+            key=lambda node: _phrase_overlap_score(query_str, node.get_content()),
+            reverse=True,
+        )
         for i, n in enumerate(ranked[: self.top_n]):
             n.score = 1.0 - i * 0.1
         return ranked[: self.top_n]
@@ -268,8 +300,10 @@ class RAGPipeline:
             "data": [
                 {
                     "section": n.metadata.get("section", ""),
+                    "title": _source_heading(n),
+                    "file_name": n.metadata.get("file_name", ""),
                     "score": round(float(n.score or 0.0), 4),
-                    "preview": n.get_content()[:120] + "…",
+                    "preview": _source_preview(n),
                 }
                 for n in nodes
             ],
@@ -296,13 +330,18 @@ class RAGPipeline:
         yield "data: [DONE]\n\n"
 
     def _mock_generate(self, question: str, nodes: list[NodeWithScore]) -> str:
-        """无 API Key 时的 Mock 回答，基于 Rerank 后的 Top-1 片段摘要。"""
+        """无 API Key 时，从最相关片段摘录原文，不冒充模型生成。"""
         if not nodes:
-            return "抱歉，知识库中未找到相关信息。请先运行 python data_init.py 初始化数据。"
+            return "演示文档中没有找到相关片段。"
         top = nodes[0]
-        section = top.metadata.get("section", "相关条例")
-        preview = top.get_content()[:200]
+        section = _source_heading(top)
+        lines = [
+            re.sub(r"^\s*(?:[-*]\s+|\d+\.\s*)", "", line).replace("**", "").strip()
+            for line in top.get_content().splitlines()
+            if line.strip() and not line.lstrip().startswith(("#", ">"))
+        ]
+        excerpt = max(lines, key=lambda line: _phrase_overlap_score(question, line)) if lines else top.get_content().strip()
         return (
-            f"根据《{section}》相关规定：{preview}… "
-            f"（以上回答基于知识库检索结果，Mock 模式仅供演示 SSE 流式输出。）"
+            f"演示文档「{section}」中的相关原文：{excerpt} "
+            f"（模拟摘录，非 AI 生成；不代表真实法规。）"
         )

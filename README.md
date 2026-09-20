@@ -15,7 +15,7 @@ The default demo does not need a paid LLM key. It returns a clearly labeled extr
 
 ## Run locally
 
-Use Python 3.11 and run from the repository root:
+Use Python 3.11 or 3.12 and run from the repository root:
 
 ```bash
 python -m venv .venv
@@ -23,16 +23,30 @@ source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
 python data_init.py
-uvicorn main:app --host 127.0.0.1 --port 8000
+python -m uvicorn main:app --host 127.0.0.1 --port 8000
 ```
 
 Open <http://127.0.0.1:8000/>. API documentation is at <http://127.0.0.1:8000/docs>. The first run downloads the embedding model and builds local indexes, so it needs internet access and can take several minutes. Subsequent starts reuse `storage/`.
 
-To test the stream from a terminal:
+In a second terminal, verify the actual HTTP and SSE response without an API key:
+
+```bash
+python verify_demo.py
+```
+
+Expected output:
+
+```text
+PASS: health ready; SSE complete; relevant citation; 5-trading-day mock answer
+```
+
+The check requires `/health` to report a loaded index, confirms the stream ends with `[DONE]`, and checks that the sample answer and first citation match the synthetic document. It was run locally on Python 3.12 with `RERANK_MODE=mock`. You can also inspect the stream manually:
 
 ```bash
 python test_client.py "示例文档中的理赔申请期限是多少？"
 ```
+
+These checks exercise the key-free sample, not LLM accuracy or production readiness. The extractive mock answer is labeled in the UI; real LLM generation requires your own key in a local environment variable or deployment secret, never in this repository.
 
 To index your own documents, replace the synthetic file in `docs/` with `.md`, `.txt` or text-extractable `.pdf` files, remove the old `storage/` directory, then rerun `python data_init.py`. Check that you have rights to publish any demo documents.
 

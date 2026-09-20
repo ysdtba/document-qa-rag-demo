@@ -1,5 +1,8 @@
 .env
+.env.*
+!.env.example
 .venv/
+.git/
 storage/
 __pycache__/
 *.pyc
