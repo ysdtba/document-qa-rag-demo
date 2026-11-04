@@ -6,6 +6,9 @@
 # 索引与向量库（本地生成，体积大）
 storage/
 
+# 含个人信息的旧版项目简介
+RAG_Project_Overview.pdf
+
 # Python
 __pycache__/
 *.py[cod]
