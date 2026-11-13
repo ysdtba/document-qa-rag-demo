@@ -11,3 +11,5 @@ within 0.5% after unit and currency normalisation.
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | baseline | 2026-11-13 | dev | 30 | 88.9% | 0.815 | 51.9% | 84.2% | 75.0% / 12.5% | 100.0% | 100.0% | 1.81 / 2.74 | 0.00035 | embed=BAAI/bge-small-zh-v1.5; rerank=local(BAAI/bge-reranker-base); top_k=10; top_n=3; llm=deepseek-flash; judge=deepseek-flash |
 | citation_fix | 2026-11-13 | dev | 30 | 88.9% | 0.815 | 51.9% | 84.2% | 75.0% / 12.5% | 100.0% | 100.0% | 1.78 / 2.18 | 0.00037 | embed=BAAI/bge-small-zh-v1.5; rerank=local(BAAI/bge-reranker-base); top_k=10; top_n=3; llm=deepseek-flash; judge=deepseek-flash |
+| topn5 | 2026-11-13 | dev | 30 | 88.9% | 0.815 | 40.0% | 84.2% | 75.0% / 12.5% | 100.0% | 100.0% | 1.78 / 2.82 | 0.00053 | embed=BAAI/bge-small-zh-v1.5; rerank=local(BAAI/bge-reranker-base); top_k=10; top_n=5; llm=deepseek-flash; judge=deepseek-flash |
+| topn8 | 2026-11-13 | dev | 30 | 88.9% | 0.815 | 29.6% | 84.2% | 75.0% / 12.5% | 100.0% | 100.0% | 1.84 / 2.50 | 0.00073 | embed=BAAI/bge-small-zh-v1.5; rerank=local(BAAI/bge-reranker-base); top_k=10; top_n=8; llm=deepseek-flash; judge=deepseek-flash |
