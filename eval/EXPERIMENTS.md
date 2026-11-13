@@ -38,3 +38,33 @@ Takeaways:
 
 1. **The bottleneck is how tables are chunked, not how many chunks are sent.** Splitting tables away from their headers makes the numbers unreadable. This is the case for the "tables as their own chunks" experiment, which should come next.
 2. **Page-level Hit@5 overstates retrieval quality.** A hit only means some chunk from a gold page was retrieved, not the chunk holding the answer. Worth reporting alongside answer accuracy rather than on its own.
+
+## 2026-11-13 · retrieval ablations: vector_only, bm25_only, rerank_none, topk20, topk50
+
+Code changes before these runs:
+
+- **Bug fix:** BM25 was loaded with the `similarity_top_k` saved when the index was built (10), so changing TOP_K only widened the vector side. BM25 now uses the current TOP_K. Runs at TOP_K=10 are unaffected.
+- New switches `RETRIEVAL_MODE` (hybrid / vector / bm25) and `RERANK_MODE=none`, plus `RERANK_DEVICE`.
+
+Each run changes one thing relative to citation_fix (hybrid, top_k=10, bge-reranker-base, top_n=3).
+
+| Run | Hit@5 | MRR@10 | Cite prec. | Number | Text | False refusals | p50 / p95 s |
+|---|---|---|---|---|---|---|---|
+| citation_fix (hybrid, k=10) | 88.9% | 0.815 | 51.9% | 84.2% | 75.0% | 14.8% | 1.8 / 2.2 |
+| vector_only | 51.9% | 0.468 | 28.4% | 42.1% | 50.0% | 48.1% | 1.7 / 2.4 |
+| bm25_only | 88.9% | 0.843 | 53.1% | 89.5% | 100% | 7.4% | 1.7 / 2.2 |
+| rerank_none | 81.5% | 0.552 | 39.5% | 63.2% | 62.5% | 33.3% | 1.3 / 1.6 |
+| **topk20** | **92.6%** | 0.830 | 55.6% | **94.7%** | **100%** | **3.7%** | 2.1 / 2.8 |
+| topk50 | 92.6% | 0.902 | 56.8% | 94.7% | 100% | 3.7% | 5.4 / 6.5 * |
+
+\* topk50 ran the reranker on CPU because MPS ran out of memory at 50 candidates, so its latency can't be compared with the other runs.
+
+Findings:
+
+1. **The vector side is weak.** Vector-only gets Hit@5 51.9% and 42.1% number accuracy. The likely cause is that `bge-small-zh-v1.5` is a Chinese embedding model and the reports are in English. That's the next thing to test (an English or multilingual embedding).
+2. **BM25 alone beats the hybrid at top_k=10** (number 89.5% vs 84.2%, text 100% vs 75%). With only 10 fused slots, weak vector hits take places that good BM25 hits would otherwise get. The hybrid still contributes something: a06 is correct with vector-only and wrong with BM25-only.
+3. **The reranker matters a lot.** Turning it off drops MRR from 0.815 to 0.552 and number accuracy from 84.2% to 63.2%.
+4. **TOP_K=20 fixes the hybrid.** It gives 4 more correct answers than top_k=10 (h02, a05, h10, a13) and cuts false refusals from 4 to 1. More candidates let the reranker reach the right page: for h02 it now sends p.10 (Financial Highlights) instead of two copies of p.232. TOP_K=50 matches TOP_K=20 on accuracy (MRR 0.902 vs 0.830), but the reranker takes about 2.5 times as long and needs more memory than MPS had. **Adopt TOP_K=20.**
+5. The only question still wrong is h08 (HKEX total assets, which is only on the balance sheet p.145). It isn't retrieved even at TOP_K=50, so it's a table-chunking problem, not a candidate-count one.
+
+Caveats: on 30 questions each question is worth 3.3 points (5.3 points on the 19 number questions), so +10.5 points of number accuracy means 2 questions. h10 was answered from p.92, which states the chairman but isn't in its gold_pages, so gold page lists can still miss valid sources. Per plan.md, top_n=3 was tuned at top_k=10, so it should be rechecked at top_k=20.

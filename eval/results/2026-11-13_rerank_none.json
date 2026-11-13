@@ -1,0 +1,2992 @@
+{
+  "run": "rerank_none",
+  "date": "2026-11-13",
+  "created_at": "2026-11-13T09:24:38+00:00",
+  "notes": "Only change vs citation_fix: RERANK_MODE=none (RRF order sent straight to the LLM)",
+  "split": "dev",
+  "limit": null,
+  "retrieval_only": false,
+  "config": {
+    "embed_model": "BAAI/bge-small-zh-v1.5",
+    "retrieval_mode": "hybrid",
+    "rerank_mode": "none",
+    "rerank_model": null,
+    "top_k": 10,
+    "rerank_top_n": 3,
+    "llm_model": "deepseek-flash",
+    "llm_base_url": "https://api.deepseek.com/v1",
+    "llm_temperature": 0.0,
+    "llm_thinking": "disabled",
+    "llm_max_tokens": 2048
+  },
+  "judge": {
+    "judge_model": "deepseek-flash",
+    "judge_base_url": "https://api.deepseek.com/v1",
+    "judge_temperature": 0,
+    "judge_thinking": "disabled",
+    "returned_models": [
+      "deepseek-flash"
+    ]
+  },
+  "generator_returned_models": [
+    "deepseek-flash"
+  ],
+  "git": {
+    "commit": "8900f8a",
+    "dirty": true
+  },
+  "questions_sha256": "564b4472d51c23ceef525164aeedee4849efdd2770d4e133546e2f696f1a3d2d",
+  "manifest_sha256": "6c3b837279d0cbe7e766eafc2ef6ed6b187dfb6ee9e51cef4ce3536c51028578",
+  "summary": {
+    "dev": {
+      "n": 30,
+      "n_answerable": 27,
+      "hit_at_5": 0.8148148148148148,
+      "mrr_at_10": 0.5522045855379188,
+      "citation_precision": 0.3950617283950617,
+      "latency_p50_s": 1.286,
+      "latency_p95_s": 1.6447999999999998,
+      "number_accuracy": 0.631578947368421,
+      "n_number": 19,
+      "text_correct": 0.625,
+      "text_partial": 0.125,
+      "n_text": 8,
+      "not_found_accuracy": 1.0,
+      "n_not_found": 3,
+      "false_refusal_rate": 0.3333333333333333,
+      "faithfulness_supported": 1.0,
+      "judge_parse_errors": 0,
+      "avg_prompt_tokens": 825.3,
+      "avg_completion_tokens": 34.7,
+      "avg_cost_usd": 0.00028922999999999997,
+      "judge_cost_usd_total": 0.006969899999999999,
+      "audit_ids": [
+        "h04",
+        "h07",
+        "h11",
+        "h12",
+        "h14",
+        "a01",
+        "a06",
+        "a10"
+      ]
+    }
+  },
+  "records": [
+    {
+      "id": "h01",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's total revenue and other income in 2025?",
+      "retrieval_s": 0.182,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 48,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 60,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 50,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 69,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.3333333333333333,
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 703,
+      "completion_tokens": 9,
+      "generation_s": 1.855,
+      "latency_s": 2.037,
+      "cost_usd": 0.00022170000000000002,
+      "refused": true,
+      "correct": false,
+      "gold_value": 29161000000.0,
+      "candidates": [],
+      "judge_cost_usd": 0.0,
+      "audit": false
+    },
+    {
+      "id": "h02",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's profit attributable to shareholders for 2025?",
+      "retrieval_s": 0.096,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 83,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0301
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 128,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 587,
+      "completion_tokens": 9,
+      "generation_s": 0.922,
+      "latency_s": 1.018,
+      "cost_usd": 0.00018690000000000002,
+      "refused": true,
+      "correct": false,
+      "gold_value": 17754000000.0,
+      "candidates": [],
+      "judge_cost_usd": 0.0,
+      "audit": false
+    },
+    {
+      "id": "h03",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's basic earnings per share for 2025?",
+      "retrieval_s": 0.068,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 166,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 213,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 40,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 11,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.3333333333333333,
+      "answer": "HKEX's basic earnings per share for 2025 was $14.05 (Hong Kong Exchanges and Clearing Limited FY2025 p.166).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 650,
+      "completion_tokens": 31,
+      "generation_s": 1.067,
+      "latency_s": 1.135,
+      "cost_usd": 0.00023219999999999998,
+      "refused": false,
+      "correct": true,
+      "gold_value": 14.05,
+      "matched_value": 14.05,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.166 explicitly states basic earnings per share for 2025 was $14.05, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0002571,
+      "audit": false
+    },
+    {
+      "id": "h04",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's total dividend per share for 2025?",
+      "retrieval_s": 0.087,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 136,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 166,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 136,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 231,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 146,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.6666666666666666,
+      "answer": "The provided excerpts do not state a total dividend per share for 2025. They only give the two interim dividends: a first interim dividend of $6.00 per share and a second interim dividend of $6.52 per share (Hong Kong Exchanges and Clearing Limited FY2025 p.136). No total is reported in the excerpts.\n\nNot found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 690,
+      "completion_tokens": 79,
+      "generation_s": 1.298,
+      "latency_s": 1.385,
+      "cost_usd": 0.0003018,
+      "refused": true,
+      "correct": false,
+      "gold_value": 12.52,
+      "candidates": [
+        2025.0,
+        6.0,
+        6.52,
+        2025.0,
+        136.0
+      ],
+      "judge_cost_usd": 0.0,
+      "audit": true
+    },
+    {
+      "id": "h05",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's EBITDA margin in 2025?",
+      "retrieval_s": 0.084,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0301
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 48,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 69,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 206,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 60,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.3333333333333333,
+      "citation_precision": 0.3333333333333333,
+      "answer": "HKEX's EBITDA margin in 2025 was 79 per cent, 5 percentage points higher than 2024 (Hong Kong Exchanges and Clearing Limited FY2025 p.10).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 641,
+      "completion_tokens": 39,
+      "generation_s": 0.837,
+      "latency_s": 0.921,
+      "cost_usd": 0.00023909999999999996,
+      "refused": false,
+      "correct": true,
+      "gold_value": 79.0,
+      "matched_value": 79.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.10 explicitly states EBITDA margin was 79 per cent, 5 percentage points higher than 2024, matching every claim in the answer.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.00026339999999999995,
+      "audit": false
+    },
+    {
+      "id": "h06",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was the Headline ADT (average daily turnover) on the Stock Exchange in 2025?",
+      "retrieval_s": 0.068,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 53,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0316
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 51,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0303
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 49,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 236,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 63,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 11,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 83,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "The highest annual Headline ADT in 2025 was $249.8 billion (Hong Kong Exchanges and Clearing Limited FY2025 p.53).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 865,
+      "completion_tokens": 32,
+      "generation_s": 0.797,
+      "latency_s": 0.865,
+      "cost_usd": 0.0002979,
+      "refused": false,
+      "correct": true,
+      "gold_value": 249800000000.0,
+      "matched_value": 249800000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.53 explicitly states the highest annual Headline ADT of $249.8 billion in 2025, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0003246,
+      "audit": false
+    },
+    {
+      "id": "h07",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "How much was raised through IPOs on HKEX in 2025?",
+      "retrieval_s": 0.055,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 55,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 23,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 49,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 206,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 55,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 24,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.6666666666666666,
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 647,
+      "completion_tokens": 9,
+      "generation_s": 1.226,
+      "latency_s": 1.281,
+      "cost_usd": 0.0002049,
+      "refused": true,
+      "correct": false,
+      "gold_value": 286900000000.0,
+      "candidates": [],
+      "judge_cost_usd": 0.0,
+      "audit": true
+    },
+    {
+      "id": "h08",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What were HKEX's total assets at 31 December 2025?",
+      "retrieval_s": 0.046,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 206,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0331
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 222,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0316
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 174,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 200,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 68,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 136,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 189,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0154
+        }
+      ],
+      "hit_at_5": false,
+      "rr_at_10": 0.0,
+      "citation_precision": 0.0,
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 652,
+      "completion_tokens": 9,
+      "generation_s": 0.778,
+      "latency_s": 0.824,
+      "cost_usd": 0.0002064,
+      "refused": true,
+      "correct": false,
+      "gold_value": 580775000000.0,
+      "candidates": [],
+      "judge_cost_usd": 0.0,
+      "audit": false
+    },
+    {
+      "id": "h09",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's net cash inflow from operating activities in 2025?",
+      "retrieval_s": 0.033,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 147,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 205,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 147,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 205,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 43,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.3333333333333333,
+      "answer": "HKEX's net cash inflow from operating activities in 2025 was $25,627 million (Hong Kong Exchanges and Clearing Limited FY2025 p.147).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 655,
+      "completion_tokens": 34,
+      "generation_s": 0.916,
+      "latency_s": 0.949,
+      "cost_usd": 0.00023730000000000002,
+      "refused": false,
+      "correct": true,
+      "gold_value": 25627000000.0,
+      "matched_value": 25627000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.147 explicitly states net cash inflow from operating activities of 25,627 $m for 2025, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0002637,
+      "audit": false
+    },
+    {
+      "id": "h10",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Who is the Chairman of HKEX?",
+      "retrieval_s": 0.087,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 96,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0311
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0303
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 81,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 106,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 109,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 128,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 95,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": false,
+      "rr_at_10": 0.0,
+      "citation_precision": 0.0,
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1111,
+      "completion_tokens": 9,
+      "generation_s": 1.315,
+      "latency_s": 1.402,
+      "cost_usd": 0.0003441,
+      "refused": true,
+      "text_label": "incorrect",
+      "text_reason": "The candidate refuses to answer and does not state Carlson Tong, the correct Chairman.",
+      "judge_model": "deepseek-flash",
+      "correct": false,
+      "judge_cost_usd": 7.8e-05,
+      "audit": false
+    },
+    {
+      "id": "h11",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Who is HKEX's Chief Executive Officer?",
+      "retrieval_s": 0.089,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 161,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0325
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 43,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0315
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 33,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0311
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 41,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0308
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 86,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0292
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 21,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 95,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 124,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 109,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 92,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.6666666666666666,
+      "answer": "Bonnie Y Chan is HKEX's Chief Executive Officer (Hong Kong Exchanges and Clearing Limited FY2025 p.43). She is an Executive Director and has served as Chief Executive Officer since 1 March 2024 (Hong Kong Exchanges and Clearing Limited FY2025 p.33).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 941,
+      "completion_tokens": 60,
+      "generation_s": 1.285,
+      "latency_s": 1.374,
+      "cost_usd": 0.0003543,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate correctly identifies Bonnie Y Chan as HKEX's Chief Executive Officer, matching the reference answer with no contradicting claims.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "All claims—Bonnie Y Chan as CEO (p.43), Executive Director and CEO since 1 March 2024 (p.33)—are directly backed by the excerpts.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.00046829999999999994,
+      "audit": true
+    },
+    {
+      "id": "h12",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Which firm was HKEX's external auditor for the 2025 financial year?",
+      "retrieval_s": 0.1,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0331
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 111,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0315
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 142,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 120,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 103,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 102,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0154
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 116,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0154
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "PwC (PricewaterhouseCoopers) was HKEX's external auditor for the 2025 financial year. The audit fees for entities within the Group were coordinated and presented by PwC Hong Kong (Hong Kong Exchanges and Clearing Limited FY2025 p.113), and the independent auditor's report was signed by PricewaterhouseCoopers, Certified Public Accountants (Hong Kong Exchanges and Clearing Limited FY2025 p.142).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1013,
+      "completion_tokens": 91,
+      "generation_s": 1.363,
+      "latency_s": 1.463,
+      "cost_usd": 0.00041309999999999996,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate correctly identifies PricewaterhouseCoopers (PwC) as HKEX's external auditor for the 2025 financial year, matching the reference answer with no contradicting claims.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "All claims are backed: p.113 states audit fees were coordinated and presented by PwC Hong Kong, and p.142 shows the independent auditor's report signed by PricewaterhouseCoopers, Certified Public Accountants, confirming PwC as external auditor for 2025.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0005505,
+      "audit": true
+    },
+    {
+      "id": "h13",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "What drove the growth in HKEX's core business revenue in 2025?",
+      "retrieval_s": 0.056,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.031
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 73,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0309
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 11,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 26,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 19,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": false,
+      "rr_at_10": 0.1,
+      "citation_precision": 0.0,
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 710,
+      "completion_tokens": 9,
+      "generation_s": 1.179,
+      "latency_s": 1.235,
+      "cost_usd": 0.00022380000000000002,
+      "refused": true,
+      "text_label": "incorrect",
+      "text_reason": "The candidate refuses to answer by saying the information is not found, whereas the reference states growth was driven by higher trading and clearing fees from record volumes.",
+      "judge_model": "deepseek-flash",
+      "correct": false,
+      "judge_cost_usd": 0.0001044,
+      "audit": false
+    },
+    {
+      "id": "h14",
+      "split": "dev",
+      "answer_type": "not_found",
+      "question": "How much revenue did HKEX earn from cryptocurrency trading in 2025?",
+      "retrieval_s": 0.094,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 140,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 68,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 152,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 938,
+      "completion_tokens": 9,
+      "generation_s": 1.28,
+      "latency_s": 1.374,
+      "cost_usd": 0.0002922,
+      "refused": true,
+      "correct": true,
+      "judge_cost_usd": 0.0,
+      "audit": true
+    },
+    {
+      "id": "h15",
+      "split": "dev",
+      "answer_type": "not_found",
+      "question": "What was HKEX's profit attributable to shareholders for the first quarter of 2026?",
+      "retrieval_s": 0.095,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0331
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 231,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 76,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 238,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 13,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0154
+        }
+      ],
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 904,
+      "completion_tokens": 9,
+      "generation_s": 1.087,
+      "latency_s": 1.182,
+      "cost_usd": 0.000282,
+      "refused": true,
+      "correct": true,
+      "judge_cost_usd": 0.0,
+      "audit": false
+    },
+    {
+      "id": "a01",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's value of new business (VONB) in 2025?",
+      "retrieval_s": 0.029,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 326,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.032
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 325,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0318
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 327,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0318
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 336,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0311
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 24,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 362,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 27,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0154
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 27,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0152
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.3333333333333333,
+      "answer": "AIA's VONB for the year ended 31 December 2025 was US$5,516 million, an increase of US$804 million, or 15 per cent, from US$4,712 million for the year ended 31 December 2024 (AIA Group Limited FY2025 p.325).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1180,
+      "completion_tokens": 67,
+      "generation_s": 1.403,
+      "latency_s": 1.432,
+      "cost_usd": 0.0004344,
+      "refused": false,
+      "correct": true,
+      "gold_value": 5516000000.0,
+      "matched_value": 5516000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's figures (US$5,516 million, US$804 million increase, 15 per cent, US$4,712 million) and the date (year ended 31 December 2025) all appear verbatim in the p.325 excerpt.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.00045569999999999996,
+      "audit": true
+    },
+    {
+      "id": "a02",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's closing EV Equity at 31 December 2025, after shareholder dividends and share buy-backs?",
+      "retrieval_s": 0.089,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 41,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0331
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 30,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0308
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 329,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 31,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 30,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 51,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 301,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 329,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0154
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.6666666666666666,
+      "answer": "AIA's closing EV Equity at 31 December 2025, after dividends and share buy-backs, was US$79,678 million (AIA Group Limited FY2025 p.30).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 968,
+      "completion_tokens": 41,
+      "generation_s": 1.451,
+      "latency_s": 1.54,
+      "cost_usd": 0.00033959999999999996,
+      "refused": false,
+      "correct": true,
+      "gold_value": 79678000000.0,
+      "matched_value": 79678000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's claim that AIA's closing EV Equity at 31 December 2025 after dividends and share buy-backs was US$79,678 million is directly stated in the p.30 excerpt.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.00036809999999999995,
+      "audit": false
+    },
+    {
+      "id": "a03",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's operating profit after tax (OPAT) attributable to shareholders in 2025?",
+      "retrieval_s": 0.088,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 191,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0328
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0308
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 213,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 35,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 30,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 194,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 197,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 200,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 191,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0154
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "AIA's operating profit after tax attributable to shareholders of AIA Group Limited in 2025 was US$7,136 million (AIA Group Limited FY2025 p.191). This is also described as a record high of US$7,136 million (AIA Group Limited FY2025 p.34).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 917,
+      "completion_tokens": 65,
+      "generation_s": 1.548,
+      "latency_s": 1.636,
+      "cost_usd": 0.00035309999999999996,
+      "refused": false,
+      "correct": true,
+      "gold_value": 7136000000.0,
+      "matched_value": 7136000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both claims are directly backed: p.191 states operating profit after tax attributable to shareholders of AIA Group Limited was US$7,136 million in 2025, and p.34 describes OPAT as a record high of US$7,136 million.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0003744,
+      "audit": false
+    },
+    {
+      "id": "a04",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's net profit attributable to shareholders in 2025?",
+      "retrieval_s": 0.054,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 154,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0328
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 191,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0321
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 213,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 194,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 13,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 30,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 76,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0154
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 1.0,
+      "answer": "AIA's net profit attributable to shareholders of AIA Group Limited in 2025 was US$6,234 million (AIA Group Limited FY2025 p.154; AIA Group Limited FY2025 p.191).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 730,
+      "completion_tokens": 47,
+      "generation_s": 1.237,
+      "latency_s": 1.291,
+      "cost_usd": 0.00027539999999999997,
+      "refused": false,
+      "correct": true,
+      "gold_value": 6234000000.0,
+      "matched_value": 6234000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both excerpts state net profit attributable to shareholders of AIA Group Limited was US$6,234 million for 2025, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0002883,
+      "audit": false
+    },
+    {
+      "id": "a05",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's insurance revenue in 2025?",
+      "retrieval_s": 0.061,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 8,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 177,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 88,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 200,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 260,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 178,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": false,
+      "rr_at_10": 0.0,
+      "citation_precision": 0.0,
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 556,
+      "completion_tokens": 9,
+      "generation_s": 1.561,
+      "latency_s": 1.622,
+      "cost_usd": 0.0001776,
+      "refused": true,
+      "correct": false,
+      "gold_value": 21618000000.0,
+      "candidates": [],
+      "judge_cost_usd": 0.0,
+      "audit": false
+    },
+    {
+      "id": "a06",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What were AIA's total assets at 31 December 2025?",
+      "retrieval_s": 0.06,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 209,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 51,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 79,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 249,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 144,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 156,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 172,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 307,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 277,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": false,
+      "rr_at_10": 0.14285714285714285,
+      "citation_precision": 0.0,
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 770,
+      "completion_tokens": 9,
+      "generation_s": 1.301,
+      "latency_s": 1.361,
+      "cost_usd": 0.00024180000000000002,
+      "refused": true,
+      "correct": false,
+      "gold_value": 345423000000.0,
+      "candidates": [],
+      "judge_cost_usd": 0.0,
+      "audit": true
+    },
+    {
+      "id": "a07",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What final dividend per share (in Hong Kong cents) did AIA's Board recommend for 2025?",
+      "retrieval_s": 0.042,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 310,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0331
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 214,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0328
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 214,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 94,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 345,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 135,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0154
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 23,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0154
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 1.0,
+      "answer": "AIA's Board proposed a final dividend of 144.08 Hong Kong cents per share for 2025 (AIA Group Limited FY2025 p.310; AIA Group Limited FY2025 p.214).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 657,
+      "completion_tokens": 45,
+      "generation_s": 1.226,
+      "latency_s": 1.268,
+      "cost_usd": 0.0002511,
+      "refused": false,
+      "correct": true,
+      "gold_value": 144.08,
+      "matched_value": 144.08,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both excerpts state that the Board proposed a final dividend of 144.08 Hong Kong cents per share for 2025, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0002637,
+      "audit": false
+    },
+    {
+      "id": "a08",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's operating ROE for full year 2025?",
+      "retrieval_s": 0.056,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 138,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 209,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 214,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 307,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 147,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.3333333333333333,
+      "answer": "AIA's full year operating ROE increased to a record high of 15.5 per cent in 2025 (AIA Group Limited FY2025 p.25).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 827,
+      "completion_tokens": 36,
+      "generation_s": 0.848,
+      "latency_s": 0.904,
+      "cost_usd": 0.00029130000000000003,
+      "refused": false,
+      "correct": true,
+      "gold_value": 15.5,
+      "matched_value": 15.5,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.25 states full year operating ROE increased to a record high of 15.5 per cent, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0003141,
+      "audit": false
+    },
+    {
+      "id": "a09",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "How many employees did AIA have as at 31 December 2025, excluding MediCard, Amplify Health, New Medical Center, AcuScan, its joint venture and its associate?",
+      "retrieval_s": 0.101,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 70,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0333
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 19,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0313
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 182,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 217,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 252,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 350,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 201,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 217,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 253,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0154
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "As at 31 December 2025, AIA had a total of 25,981 employees, excluding MediCard, Amplify Health, New Medical Center, AcuScan, its joint venture Tata AIA Life and its associate China Post Life (AIA Group Limited FY2025 p.70).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1042,
+      "completion_tokens": 62,
+      "generation_s": 1.28,
+      "latency_s": 1.381,
+      "cost_usd": 0.0003869999999999999,
+      "refused": false,
+      "correct": true,
+      "gold_value": 25981.0,
+      "matched_value": 25981.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer accurately restates the employee count of 25,981 as at 31 December 2025 and the list of excluded entities from the p.70 note.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0003831,
+      "audit": false
+    },
+    {
+      "id": "a10",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was the total estimated remuneration payable by AIA to PricewaterhouseCoopers for 2025?",
+      "retrieval_s": 0.06,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 306,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 121,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 298,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 264,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 304,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 264,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 303,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 267,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 131,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.3333333333333333,
+      "answer": "The total estimated remuneration payable by the Group to PricewaterhouseCoopers for the year ended 31 December 2025 was US$34.5 million (2024: US$31.8 million) (AIA Group Limited FY2025 p.121).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1187,
+      "completion_tokens": 54,
+      "generation_s": 1.434,
+      "latency_s": 1.494,
+      "cost_usd": 0.0004209,
+      "refused": false,
+      "correct": true,
+      "gold_value": 34500000.0,
+      "matched_value": 34500000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's figures (US$34.5 million for 2025 and US$31.8 million for 2024) and the description of the payment to PricewaterhouseCoopers match the p.121 excerpt exactly.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.00044489999999999997,
+      "audit": true
+    },
+    {
+      "id": "a11",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Who was the Chairman of AIA at 31 December 2025?",
+      "retrieval_s": 0.056,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 135,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0315
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 8,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 95,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 114,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 120,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.3333333333333333,
+      "answer": "Sir Mark Edward Tucker was Independent Non-executive Chairman of AIA Group Limited (AIA Group Limited FY2025 p.8), having been appointed as Independent Non-executive Chairman and an Independent Non-executive Director with effect from 1 October 2025 (AIA Group Limited FY2025 p.113).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 754,
+      "completion_tokens": 64,
+      "generation_s": 1.596,
+      "latency_s": 1.652,
+      "cost_usd": 0.000303,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate correctly identifies Sir Mark Edward Tucker as the Chairman, matching the reference answer with no contradicting claims.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's claims that Sir Mark Edward Tucker was Independent Non-executive Chairman (p.8) and was appointed as Independent Non-executive Chairman and Independent Non-executive Director effective 1 October 2025 (p.113) are both directly backed by the excerpts.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0004326,
+      "audit": false
+    },
+    {
+      "id": "a12",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Who is AIA's Group Chief Executive and President?",
+      "retrieval_s": 0.064,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0328
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 90,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.029
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 129,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 91,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 120,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 8,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 128,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 88,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 120,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "Mr. Lee Yuan Siong is AIA's Group Chief Executive and President (AIA Group Limited FY2025 p.14).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 819,
+      "completion_tokens": 27,
+      "generation_s": 1.107,
+      "latency_s": 1.171,
+      "cost_usd": 0.0002781,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate states Lee Yuan Siong as AIA's Group Chief Executive and President, matching the reference exactly.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.14 explicitly identifies Mr. Lee Yuan Siong as Group Chief Executive and President of AIA Group Limited.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.00039509999999999995,
+      "audit": false
+    },
+    {
+      "id": "a13",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "What is AIA's capital management payout target?",
+      "retrieval_s": 0.088,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 286,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 47,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 302,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 26,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 244,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 233,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.3333333333333333,
+      "answer": "AIA's capital management policy sets out a shareholder payout ratio target of 75 per cent of annual net FSG (AIA Group Limited FY2025 p.47).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 927,
+      "completion_tokens": 35,
+      "generation_s": 1.044,
+      "latency_s": 1.132,
+      "cost_usd": 0.0003201,
+      "refused": false,
+      "text_label": "partially_correct",
+      "text_reason": "The candidate correctly states the 75% of annual net FSG payout target but omits the reference's additional facts about dividends and share buy-backs and regular reviews to return excess capital.",
+      "judge_model": "deepseek-flash",
+      "correct": false,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's claim that AIA's capital management policy sets a shareholder payout ratio target of 75 per cent of annual net FSG is directly stated in the p.47 excerpt.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0004782,
+      "audit": false
+    },
+    {
+      "id": "a14",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Where and when was the business that is now AIA first established?",
+      "retrieval_s": 0.063,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 9,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0301
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 216,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 2,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 336,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 96,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 91,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 167,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 27,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 66,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.3333333333333333,
+      "citation_precision": 0.3333333333333333,
+      "answer": "The business that is now AIA was first established in Shanghai more than a century ago in 1919 (AIA Group Limited FY2025 p.2).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1022,
+      "completion_tokens": 33,
+      "generation_s": 1.026,
+      "latency_s": 1.089,
+      "cost_usd": 0.0003462,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate states both key facts from the reference—Shanghai and 1919—with no contradicting claims.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's claim that AIA was first established in Shanghai in 1919 is directly stated in the p.2 excerpt.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0004617,
+      "audit": false
+    },
+    {
+      "id": "a15",
+      "split": "dev",
+      "answer_type": "not_found",
+      "question": "What was AIA's value of new business from its Japan operations in 2025?",
+      "retrieval_s": 0.044,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 305,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 91,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0167
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0164
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 322,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 358,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0161
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 335,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 321,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 319,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0156
+        }
+      ],
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 696,
+      "completion_tokens": 9,
+      "generation_s": 1.003,
+      "latency_s": 1.047,
+      "cost_usd": 0.0002196,
+      "refused": true,
+      "correct": true,
+      "judge_cost_usd": 0.0,
+      "audit": false
+    }
+  ]
+}

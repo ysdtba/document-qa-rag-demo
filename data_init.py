@@ -254,7 +254,7 @@ def main() -> None:
     storage.docstore.persist(persist_path=str(docstore_file))
     bm25 = BM25Retriever.from_defaults(
         nodes=nodes,
-        similarity_top_k=int(os.getenv("TOP_K", "10")),
+        similarity_top_k=int(os.getenv("TOP_K", "20")),
     )
     bm25.persist(str(BM25_PATH))
 

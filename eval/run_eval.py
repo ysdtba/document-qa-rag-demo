@@ -228,7 +228,7 @@ def write_results_md() -> None:
     for path, run in runs:
         cfg = run.get("config", {})
         config = (
-            f"embed={cfg.get('embed_model')}; rerank={cfg.get('rerank_mode')}"
+            f"embed={cfg.get('embed_model')}; retrieval={cfg.get('retrieval_mode', 'hybrid')}; rerank={cfg.get('rerank_mode')}"
             f"{'(' + cfg['rerank_model'] + ')' if cfg.get('rerank_model') else ''}; "
             f"top_k={cfg.get('top_k')}; top_n={cfg.get('rerank_top_n')}; llm={cfg.get('llm_model')}; "
             f"judge={(run.get('judge') or {}).get('judge_model')}"
