@@ -42,6 +42,7 @@
 
 ## 阶段 2（第 2 周）：提升检索
 下面每一项单独做、单独跑评测，结果写进 RESULTS.md 的对比表：
+- PDF 解析：pypdf 在 AIA 年报正文页会丢小数点（15.5 per cent → "155 per cent"，144.08 港仙 → "14408"），财务报表页正常。换成 pdftotext 或 PyMuPDF，对比基线（a07、a08 两题直接受影响）
 - 按页和段落切块，调整 chunk 大小和重叠
 - 表格单独成块：转成 Markdown，同一张表不拆开
 - 按 ticker / fiscal_year 做 metadata 过滤

@@ -21,3 +21,7 @@ venv/
 .DS_Store
 .idea/
 .vscode/
+
+# 年报 PDF 不进 git（来源记录在 data/manifest.csv）
+data/raw/*
+!data/raw/.gitkeep

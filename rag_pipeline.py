@@ -26,9 +26,12 @@ import asyncio
 import json
 import os
 import re
+import time
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, AsyncGenerator
 
+from dotenv import load_dotenv
 from llama_index.core import Settings, StorageContext, VectorStoreIndex
 from llama_index.core.postprocessor import SentenceTransformerRerank
 from llama_index.core.retrievers import QueryFusionRetriever
@@ -39,6 +42,9 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.openai import OpenAI
 from llama_index.retrievers.bm25 import BM25Retriever
 
+# 先加载 .env，再读取下面的模块级配置（否则 .env 里的 TOP_K / RERANK_MODE 等不会生效）
+load_dotenv()
+
 # ── 全局配置 ──────────────────────────────────────────────────────────
 TOP_K = int(os.getenv("TOP_K", "10"))           # 混合检索召回数
 RERANK_TOP_N = int(os.getenv("RERANK_TOP_N", "3"))  # Rerank 后精选数
@@ -47,6 +53,56 @@ DOCSTORE_PATH = os.getenv("DOCSTORE_PATH", "./storage/docstore")
 BM25_PATH = os.getenv("BM25_PATH", "./storage/bm25")
 RERANK_MODE = os.getenv("RERANK_MODE", "local").lower()
 LLM_CONTEXT_WINDOW = int(os.getenv("LLM_CONTEXT_WINDOW", "65536"))
+LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
+# DeepSeek V4 默认开启 thinking 模式，此时 temperature 不生效；设为 disabled 才能保证 temperature=0
+LLM_THINKING = os.getenv("LLM_THINKING", "").strip().lower()
+
+
+def thinking_extra_body(value: str) -> dict:
+    """LLM_THINKING / JUDGE_THINKING → OpenAI SDK 的 extra_body；留空则不传。"""
+    return {"thinking": {"type": value}} if value in {"enabled", "disabled"} else {}
+
+# 拒答固定句式：系统提示要求模型找不到答案时原样输出，评测脚本据此判断是否拒答
+NOT_FOUND_SENTENCE = "Not found in the provided annual report excerpts."
+
+SYSTEM_PROMPT = (
+    "You answer questions about Hong Kong listed companies' annual reports. "
+    "Use only the context excerpts provided. Each excerpt is labelled with company, "
+    "fiscal year and PDF page. Cite every fact with the label of the excerpt it came from, "
+    "copying the company name exactly, e.g. (<company> FY<year> p.<page>). "
+    "Give figures with their unit and currency exactly as reported. "
+    f"If the excerpts do not contain the answer, reply exactly: \"{NOT_FOUND_SENTENCE}\" "
+    "Do not guess or use outside knowledge. Answer in the language of the question."
+)
+
+
+def effective_config() -> dict[str, Any]:
+    """当前生效的检索/生成配置，写进评测结果，便于复现和对比。"""
+    has_key = bool(os.getenv("OPENAI_API_KEY", "").strip())
+    return {
+        "embed_model": os.getenv("EMBED_MODEL", "BAAI/bge-small-zh-v1.5"),
+        "rerank_mode": RERANK_MODE,
+        "rerank_model": os.getenv("RERANK_MODEL", "BAAI/bge-reranker-base") if RERANK_MODE == "local" else None,
+        "top_k": TOP_K,
+        "rerank_top_n": RERANK_TOP_N,
+        "llm_model": os.getenv("LLM_MODEL", "deepseek-chat") if has_key else "mock",
+        "llm_base_url": os.getenv("OPENAI_BASE_URL") if has_key else None,
+        "llm_temperature": LLM_TEMPERATURE,
+        "llm_thinking": LLM_THINKING or None,
+        "llm_max_tokens": int(os.getenv("LLM_MAX_TOKENS", "2048")),
+    }
+
+
+@dataclass
+class AnswerResult:
+    """非流式回答（评测用）：文本 + 用量 + 实际返回的模型版本。"""
+
+    text: str
+    model: str
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    latency_s: float = 0.0
+    raw_usage: dict = field(default_factory=dict)
 
 
 def _patch_openai_compat() -> None:
@@ -88,6 +144,10 @@ def _init_settings() -> None:
             api_key=api_key,
             api_base=os.getenv("OPENAI_BASE_URL"),
             max_tokens=int(os.getenv("LLM_MAX_TOKENS", "2048")),
+            temperature=LLM_TEMPERATURE,
+            additional_kwargs=(
+                {"extra_body": thinking_extra_body(LLM_THINKING)} if thinking_extra_body(LLM_THINKING) else {}
+            ),
         )
     else:
         # QueryFusionRetriever 初始化时需要 Settings.llm，Mock 模式用 MockLLM 占位
@@ -96,14 +156,16 @@ def _init_settings() -> None:
 
 def _build_reranker():
     """
-    重排序层：对 Top-K 候选逐对计算 query-chunk 相关性，精选 Top-N。
+    重排序层：对全部 Top-K 候选逐对计算 query-chunk 相关性并重新排序。
+    返回完整排序（top_n=TOP_K），由调用方截取前 RERANK_TOP_N 个送给 LLM；
+    这样评测能在同一个排序上算 Hit@5 / MRR@10，Cross-Encoder 的计算量不变。
     RERANK_MODE=mock 时使用轻量启发式打分，无需下载 Cross-Encoder，适合快速演示。
     """
     if RERANK_MODE == "mock":
-        return _MockReranker(top_n=RERANK_TOP_N)
+        return _MockReranker(top_n=TOP_K)
     return SentenceTransformerRerank(
         model=os.getenv("RERANK_MODEL", "BAAI/bge-reranker-base"),
-        top_n=RERANK_TOP_N,
+        top_n=TOP_K,
     )
 
 
@@ -123,7 +185,28 @@ def _phrase_overlap_score(question: str, content: str) -> int:
     )
 
 
+def _get(obj: Any, key: str) -> Any:
+    """同时兼容 dict 和 OpenAI SDK 对象的取值。"""
+    if obj is None:
+        return None
+    if isinstance(obj, dict):
+        return obj.get(key)
+    return getattr(obj, key, None)
+
+
+def source_label(node: NodeWithScore) -> str:
+    """引用标签：年报用「公司 FY年份 p.页码」，其他文档用 section。"""
+    meta = node.metadata
+    if meta.get("page") is not None:
+        who = meta.get("company") or meta.get("ticker") or meta.get("file_name", "")
+        year = f" FY{meta['fiscal_year']}" if meta.get("fiscal_year") else ""
+        return f"{who}{year} p.{meta['page']}"
+    return str(meta.get("section", "未知"))
+
+
 def _source_heading(node: NodeWithScore) -> str:
+    if node.metadata.get("page") is not None:
+        return source_label(node)
     first_line = node.get_content().strip().splitlines()[0] if node.get_content().strip() else ""
     match = re.match(r"^#{1,6}\s+(.+)$", first_line)
     if match:
@@ -234,10 +317,9 @@ class RAGPipeline:
 
     # ── 检索 + 精排 ───────────────────────────────────────────────────
 
-    def retrieve_and_rerank(self, question: str) -> list[NodeWithScore]:
+    def retrieve_ranked(self, question: str) -> list[NodeWithScore]:
         """
-        同步检索链路（CPU/IO 密集，在 FastAPI 中会通过 run_in_executor 异步化）：
-        Hybrid Top-K → Rerank Top-N
+        Hybrid Top-K → Rerank，返回重排后的完整 Top-K 排序（评测用这个算 Hit@5 / MRR@10）。
         """
         if not self.is_ready:
             raise RuntimeError("知识库未初始化，请先运行: python data_init.py")
@@ -245,29 +327,55 @@ class RAGPipeline:
         assert self._fusion_retriever is not None
         # Step 1: 混合检索召回 Top-K（内部已完成 RRF 融合）
         candidates: list[NodeWithScore] = self._fusion_retriever.retrieve(question)
-        # Step 2: Cross-Encoder / Mock 精排，输出 Top-N
+        # Step 2: Cross-Encoder / Mock 对全部候选重新排序
         return self._reranker.postprocess_nodes(candidates, query_str=question)
+
+    def retrieve_and_rerank(self, question: str) -> list[NodeWithScore]:
+        """
+        同步检索链路（CPU/IO 密集，在 FastAPI 中会通过 run_in_executor 异步化）：
+        Hybrid Top-K → Rerank → 取前 RERANK_TOP_N 个送给 LLM
+        """
+        return self.retrieve_ranked(question)[:RERANK_TOP_N]
 
     def _build_chat_messages(
         self, question: str, nodes: list[NodeWithScore]
     ) -> list[ChatMessage]:
         context = "\n\n---\n\n".join(
-            f"[来源: {n.metadata.get('section', '未知')}]\n{n.get_content()}"
-            for n in nodes
+            f"[Source {i}: {source_label(n)}]\n{n.get_content()}"
+            for i, n in enumerate(nodes, start=1)
         )
         return [
-            ChatMessage(
-                role=MessageRole.SYSTEM,
-                content=(
-                    "你是虚构示例文档的问答助手。请严格依据以下上下文回答，"
-                    "不要编造。若上下文不足，请明确说明。"
-                ),
-            ),
+            ChatMessage(role=MessageRole.SYSTEM, content=SYSTEM_PROMPT),
             ChatMessage(
                 role=MessageRole.USER,
-                content=f"【上下文】\n{context}\n\n【用户问题】\n{question}",
+                content=f"Context excerpts:\n{context}\n\nQuestion:\n{question}",
             ),
         ]
+
+    def answer(self, question: str, nodes: list[NodeWithScore]) -> AnswerResult:
+        """非流式生成（评测用），返回用量和模型版本。没有 API Key 时返回 mock 摘录。"""
+        start = time.perf_counter()
+        if not self.uses_real_llm:
+            return AnswerResult(
+                text=self._mock_generate(question, nodes),
+                model="mock",
+                latency_s=time.perf_counter() - start,
+            )
+        response = Settings.llm.chat(self._build_chat_messages(question, nodes))
+        raw = response.raw
+        usage = _get(raw, "usage") or {}
+        return AnswerResult(
+            text=response.message.content or "",
+            model=_get(raw, "model") or Settings.llm.model,
+            prompt_tokens=int(_get(usage, "prompt_tokens") or 0),
+            completion_tokens=int(_get(usage, "completion_tokens") or 0),
+            latency_s=time.perf_counter() - start,
+            raw_usage=usage if isinstance(usage, dict) else getattr(usage, "model_dump", dict)(),
+        )
+
+    @property
+    def uses_real_llm(self) -> bool:
+        return bool(os.getenv("OPENAI_API_KEY", "").strip()) and not isinstance(Settings.llm, MockLLM)
 
     # ── SSE 流式生成 ──────────────────────────────────────────────────
 
@@ -302,6 +410,11 @@ class RAGPipeline:
                     "section": n.metadata.get("section", ""),
                     "title": _source_heading(n),
                     "file_name": n.metadata.get("file_name", ""),
+                    "ticker": n.metadata.get("ticker"),
+                    "company": n.metadata.get("company"),
+                    "fiscal_year": n.metadata.get("fiscal_year"),
+                    "page": n.metadata.get("page"),
+                    "source_url": n.metadata.get("source_url"),
                     "score": round(float(n.score or 0.0), 4),
                     "preview": _source_preview(n),
                 }
@@ -311,9 +424,7 @@ class RAGPipeline:
         yield f"data: {json.dumps(sources_payload, ensure_ascii=False)}\n\n"
 
         # ── Phase 3: LLM 流式 token 推送（DeepSeek 等走 Chat Completions API）──
-        api_key = os.getenv("OPENAI_API_KEY", "").strip()
-        use_real_llm = api_key and not isinstance(Settings.llm, MockLLM)
-        if use_real_llm:
+        if self.uses_real_llm:
             messages = self._build_chat_messages(question, nodes)
             stream = await Settings.llm.astream_chat(messages)
             async for chunk in stream:

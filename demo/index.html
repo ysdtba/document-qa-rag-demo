@@ -105,7 +105,17 @@
                 if (source.file_name) {
                   const filename = document.createElement("small");
                   filename.className = "filename";
-                  filename.textContent = source.file_name;
+                  if (source.source_url && /^https:\/\//.test(source.source_url)) {
+                    const link = document.createElement("a");
+                    link.href = source.source_url;
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+                    link.textContent = source.file_name;
+                    filename.append(link);
+                  } else {
+                    filename.textContent = source.file_name;
+                  }
+                  if (source.page) filename.append(` · PDF 第 ${source.page} 页`);
                   item.append(filename);
                 }
                 const preview = document.createElement("small");
