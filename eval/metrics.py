@@ -237,3 +237,12 @@ def percentile(values: Iterable[float], pct: float) -> float | None:
 def mean(values: Iterable[float | None]) -> float | None:
     data = [v for v in values if v is not None]
     return sum(data) / len(data) if data else None
+
+
+def text_score(labels: Iterable[str]) -> float | None:
+    """文字题得分：正确记 1，部分正确记 0.5，其余（含 parse_error）记 0。"""
+    data = list(labels)
+    if not data:
+        return None
+    points = sum(1.0 if label == "correct" else 0.5 if label == "partially_correct" else 0.0 for label in data)
+    return points / len(data)

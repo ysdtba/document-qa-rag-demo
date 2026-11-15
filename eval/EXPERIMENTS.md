@@ -89,3 +89,23 @@ Findings:
 Decision: adopt the English embedding. Ranking is better at no extra cost, and the vector side is no longer a liability if BM25 misses (such as paraphrased questions or the planned Chinese-question support).
 
 Follow-up on eval reliability: a13 shows the judge isn't stable on partial answers. Options are a clearer rubric (list the required facts), a narrower reference answer, or reporting text accuracy as correct + 0.5 × partial. This should be settled before small text-accuracy differences are taken seriously.
+
+## 2026-11-15 · judge text-v2 (rejudge only)
+
+Change: the text judge now splits the reference answer into points and marks each one covered or contradicted. **Code computes the label from those marks** (all covered → correct; some → partially_correct; none, any contradiction, or a refusal → incorrect). The model's own label is kept only for comparison. `JUDGE_PROMPT_VERSION = "text-v2"` is recorded in results, and `text_score` (correct = 1, partial = 0.5) was added. Implemented by Cursor and reviewed by Claude Code; `eval/rejudge.py` regrades the saved answers without retrieving or generating again, so retrieval and number scores are untouched.
+
+Each answer was judged 3 times:
+
+| Source run | Embedding | Text labels consistent | a13 old → new | Text score old → new |
+|---|---|---|---|---|
+| topk20 | zh | 8/8 | correct → partial ×3 | 100% → 93.75% |
+| embed_en | en | 8/8 | partial → partial ×3 | 93.75% → 93.75% |
+| en_vector_only | en | 8/8 | correct → partial ×3 | 100% → 93.75% |
+
+Findings:
+
+1. With text-v2, a13 gets the same verdict every time: it covers 2 of 3 points and leaves out "regular reviews to return excess capital". The other 7 text questions are correct in every run.
+2. **Under one judge, zh and en embeddings score the same on text (93.75%).** The earlier 100% vs 87.5% gap was entirely judge noise, which confirms the embedding decision was made on ranking (MRR) rather than text accuracy.
+3. Text scores from text-v1 and text-v2 runs shouldn't be compared directly. RESULTS.md shows the judge version in the config column. Future runs use text-v2.
+
+Cost: about $0.005 per rejudge at 3 repeats.
