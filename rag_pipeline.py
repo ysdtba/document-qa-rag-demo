@@ -81,7 +81,7 @@ def effective_config() -> dict[str, Any]:
     """当前生效的检索/生成配置，写进评测结果，便于复现和对比。"""
     has_key = bool(os.getenv("OPENAI_API_KEY", "").strip())
     return {
-        "embed_model": os.getenv("EMBED_MODEL", "BAAI/bge-small-zh-v1.5"),
+        "embed_model": os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5"),
         "retrieval_mode": RETRIEVAL_MODE,
         "rerank_mode": RERANK_MODE,
         "rerank_model": os.getenv("RERANK_MODEL", "BAAI/bge-reranker-base") if RERANK_MODE == "local" else None,
@@ -137,7 +137,7 @@ def _patch_openai_compat() -> None:
 def _init_settings() -> None:
     """初始化 Embedding 与 LLM（LLM 无 Key 时由 stream_chat 走 Mock 分支）。"""
     Settings.embed_model = HuggingFaceEmbedding(
-        model_name=os.getenv("EMBED_MODEL", "BAAI/bge-small-zh-v1.5"),
+        model_name=os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5"),
     )
     api_key = os.getenv("OPENAI_API_KEY", "").strip()
     if api_key:

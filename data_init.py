@@ -222,7 +222,7 @@ def main() -> None:
 
     # 2. 初始化 Embedding
     Settings.embed_model = HuggingFaceEmbedding(
-        model_name=os.getenv("EMBED_MODEL", "BAAI/bge-small-zh-v1.5"),
+        model_name=os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5"),
     )
     print(f"[2/4] Embedding 模型: {Settings.embed_model}")
 

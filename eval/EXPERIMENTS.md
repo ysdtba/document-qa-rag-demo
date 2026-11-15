@@ -68,3 +68,24 @@ Findings:
 5. The only question still wrong is h08 (HKEX total assets, which is only on the balance sheet p.145). It isn't retrieved even at TOP_K=50, so it's a table-chunking problem, not a candidate-count one.
 
 Caveats: on 30 questions each question is worth 3.3 points (5.3 points on the 19 number questions), so +10.5 points of number accuracy means 2 questions. h10 was answered from p.92, which states the chairman but isn't in its gold_pages, so gold page lists can still miss valid sources. Per plan.md, top_n=3 was tuned at top_k=10, so it should be rechecked at top_k=20.
+
+## 2026-11-13 · embed_en, en_vector_only
+
+Change: EMBED_MODEL `BAAI/bge-small-zh-v1.5` → `BAAI/bge-small-en-v1.5`. Both are the same size (small), the chunks are identical (1,540), and LlamaIndex adds each model's own BGE query instruction. The English index was built in `storage/en/`, so the original index is untouched.
+
+| Run | Embedding | Retrieval | Hit@5 | MRR@10 | Number | Text | False refusals |
+|---|---|---|---|---|---|---|---|
+| vector_only | zh | vector, k=10 | 51.9% | 0.468 | 42.1% | 50.0% | 48.1% |
+| en_vector_only | **en** | vector, k=10 | **85.2%** | **0.768** | **84.2%** | **100%** | **11.1%** |
+| topk20 | zh | hybrid, k=20 | 92.6% | 0.830 | 94.7% | 100% | 3.7% |
+| embed_en | **en** | hybrid, k=20 | 92.6% | **0.886** | 94.7% | 87.5% | 3.7% |
+
+Findings:
+
+1. **The Chinese embedding model was the weak point.** On the English reports, switching to the English model raises vector-only Hit@5 from 51.9% to 85.2% and number accuracy from 42.1% to 84.2%. On its own, vector search now nearly matches BM25.
+2. **In the hybrid, ranking improves but answers don't change.** MRR rises from 0.830 to 0.886 and latency is the same. Number accuracy stays at 94.7% because BM25 plus the reranker had already rescued those questions at k=20.
+3. The drop in text accuracy (100% → 87.5%) is a single question, a13, and it's **judge noise, not a retrieval change**. The answers are the same in substance (75% of net FSG, without the "regular review" clause). In one run the judge called that "correct … though it omits the regular review"; in another it called it "partially_correct". So the judge is inconsistent on partial answers at temperature 0 across slightly different contexts.
+
+Decision: adopt the English embedding. Ranking is better at no extra cost, and the vector side is no longer a liability if BM25 misses (such as paraphrased questions or the planned Chinese-question support).
+
+Follow-up on eval reliability: a13 shows the judge isn't stable on partial answers. Options are a clearer rubric (list the required facts), a narrower reference answer, or reporting text accuracy as correct + 0.5 × partial. This should be settled before small text-accuracy differences are taken seriously.
