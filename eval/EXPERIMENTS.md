@@ -133,3 +133,38 @@ Why h08 (HKEX total assets) still fails: the chunks are fine now, but the rankin
 A table chunk is mostly numbers. It shares few words with the question, and many note pages mention "total assets" in prose.
 
 Decision: **don't adopt.** Keep the code with `TABLE_CHUNKS=off` as the default. Tables are now readable when retrieved (p.75's quarterly table keeps its headers), but retrieval can't find them for metric questions. That's the case for plan.md Stage 3: put the key statement figures in a structured table and answer metric questions with a `lookup_metric` tool rather than with retrieval.
+
+## 2026-11-16 · stage2_final (test split, one-time run)
+
+Configuration: the Stage 2 final setup chosen on dev. That's bge-small-en-v1.5, hybrid BM25 + vector with RRF, TOP_K=20, bge-reranker-base, top_n=3, deepseek-flash with thinking off, and the text-v2 judge. Run once on the 20 held-out test questions (h16–h25, a16–a25), which were drafted by another agent without running the system, independently reviewed, and approved by the author before the run. On 20 questions one question is 5 points; on the 12 number questions it is 8.3 points.
+
+| | dev (embed_en) | **test (stage2_final)** |
+|---|---|---|
+| Hit@5 | 92.6% | **82.4%** |
+| MRR@10 | 0.886 | **0.709** |
+| Number accuracy | 94.7% (18/19) | **58.3% (7/12)** |
+| Text score (text-v2) | 93.75% | **100% (5/5)** |
+| Not-found | 100% | **100% (3/3)** |
+| False refusals | 3.7% | **29.4% (5/17)** |
+| Faithfulness | 100% | **100%** |
+| p50 / p95 s | 2.1 / 2.4 | 2.1 / 3.0 |
+| Cost per question | $0.00036 | $0.00036 |
+
+All 5 failures are refusals. The model never gave a wrong figure, so the losses come from retrieval and ranking, not generation.
+
+| id | Question | Where the gold page ranked |
+|---|---|---|
+| h16 | HKEX cash and cash equivalents (balance sheet) | p.145 at rank 4 |
+| h17 | HKEX total equity | p.146 at rank 7; p.83 and p.145 not in the top 20 |
+| h20 | HKEX Stock Connect revenue and other income | p.53 at rank 6 |
+| h21 | HKEX equity per share | p.83 (10-year table) at rank 6 |
+| a17 | AIA total weighted premium income | p.192 at rank 3, but the chunk sent is the note's definition of TWPI, not its figures; p.6 at rank 8, p.39 at rank 9 |
+
+Findings:
+
+1. **Test is clearly lower than dev, mostly on numbers (94.7% → 58.3%).** Two reasons. First, TOP_K, top_n and the embedding were all chosen on dev, so dev numbers are optimistic. Second, the test set deliberately asks more for figures that live only in statements and tables (balance sheet, 10-year table), which is the case that already failed on dev with h08. This is the gap a held-out set is meant to show.
+2. **Definitions outrank data.** For a17 the top three chunks are a market-breakdown chart with only percentages, the glossary entry for TWPI and the note text that defines TWPI. The reranker scores text that repeats the question's words above the table row that holds the number. h16, h17 and h21 are the same pattern: statement tables rank below narrative pages.
+3. **Four of the five gold pages ranked 3–7**, just outside or at the edge of top_n=3. top_n=5 gave no gain on dev at TOP_K=10, but it hasn't been rechecked at TOP_K=20. That has to be tested on dev; per plan.md, nothing is tuned on these test results.
+4. Text and not-found questions held up: 5/5 text correct, 3/3 refusals correct, and faithfulness 100%. The system refuses rather than guesses when retrieval misses.
+
+Conclusion for Stage 2: retrieval tuning has taken narrative and highlight-page questions about as far as it goes, but metric questions answered from financial statements still fail about 40% of the time on unseen questions. Stage 3's structured statement table plus a `lookup_metric` tool targets exactly this. The test split isn't run again until the end of Stage 3.
