@@ -93,6 +93,7 @@ def effective_config() -> dict[str, Any]:
         "llm_temperature": LLM_TEMPERATURE,
         "llm_thinking": LLM_THINKING or None,
         "llm_max_tokens": int(os.getenv("LLM_MAX_TOKENS", "2048")),
+        "table_chunks": os.getenv("TABLE_CHUNKS", "off").strip().lower() in {"1", "on", "true", "yes"},
     }
 
 

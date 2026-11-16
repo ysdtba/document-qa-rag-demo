@@ -109,3 +109,27 @@ Findings:
 3. Text scores from text-v1 and text-v2 runs shouldn't be compared directly. RESULTS.md shows the judge version in the config column. Future runs use text-v2.
 
 Cost: about $0.005 per rejudge at 3 repeats.
+
+## 2026-11-15 · table_chunks (negative result)
+
+Change: `TABLE_CHUNKS=on` pulls tables out of each page as their own Markdown chunks, keeping the header and title with every chunk and splitting long tables by rows with the header repeated. The text around them is chunked as before. Tables are found with pdfplumber word coordinates (column right edges), because the statements have almost no ruling lines, so line-based `find_tables` fails. Implemented by another agent and reviewed by Claude Code. With `TABLE_CHUNKS=off`, the chunks are byte-identical to the current index (1,540, same hash). The new index is in `storage/tables/` with 1,759 chunks, 452 of them tables.
+
+| | embed_en | table_chunks |
+|---|---|---|
+| Hit@5 | 92.6% | 92.6% |
+| MRR@10 | 0.886 | 0.858 |
+| Number accuracy | 94.7% | 89.5% |
+| Text score (text-v2) | 93.75% | 93.75% |
+| False refusals | 3.7% | 7.4% |
+| p50 / p95 s | 2.1 / 2.4 | 2.3 / 3.0 |
+
+Only a05 flipped (correct → refused): its gold page p.154 fell from rank 1 to rank 4, just outside top_n=3, because 219 extra chunks now compete for the top places.
+
+Why h08 (HKEX total assets) still fails: the chunks are fine now, but the ranking isn't. The p.145 table chunk is clean (`| Total assets | 547,221 | 33,554 | 580,775 | …` under the year headers), yet for "What were HKEX's total assets at 31 December 2025?":
+
+- vector rank 39, BM25 rank 67, so it never enters the top-20 candidates
+- even if added to the candidates by hand, the reranker puts it 12th (score 0.990, against 0.999 for narrative pages)
+
+A table chunk is mostly numbers. It shares few words with the question, and many note pages mention "total assets" in prose.
+
+Decision: **don't adopt.** Keep the code with `TABLE_CHUNKS=off` as the default. Tables are now readable when retrieved (p.75's quarterly table keeps its headers), but retrieval can't find them for metric questions. That's the case for plan.md Stage 3: put the key statement figures in a structured table and answer metric questions with a `lookup_metric` tool rather than with retrieval.
