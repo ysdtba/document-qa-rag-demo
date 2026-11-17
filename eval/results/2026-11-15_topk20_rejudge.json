@@ -1,0 +1,5265 @@
+{
+  "run": "topk20_rejudge",
+  "date": "2026-11-15",
+  "created_at": "2026-11-15T13:24:00+00:00",
+  "notes": "rejudged text answers from 2026-11-13_topk20.json with text-v2, repeat=3",
+  "split": "dev",
+  "limit": null,
+  "retrieval_only": false,
+  "config": {
+    "embed_model": "BAAI/bge-small-zh-v1.5",
+    "retrieval_mode": "hybrid",
+    "rerank_mode": "local",
+    "rerank_model": "BAAI/bge-reranker-base",
+    "top_k": 20,
+    "rerank_top_n": 3,
+    "llm_model": "deepseek-flash",
+    "llm_base_url": "https://api.deepseek.com/v1",
+    "llm_temperature": 0.0,
+    "llm_thinking": "disabled",
+    "llm_max_tokens": 2048
+  },
+  "judge": {
+    "judge_model": "deepseek-flash",
+    "judge_base_url": "https://api.deepseek.com/v1",
+    "judge_temperature": 0,
+    "judge_thinking": "disabled",
+    "judge_prompt_version": "text-v2",
+    "returned_models": [
+      "deepseek-flash"
+    ]
+  },
+  "generator_returned_models": [
+    "deepseek-flash"
+  ],
+  "git": {
+    "commit": "4ab2cd5",
+    "dirty": true
+  },
+  "questions_sha256": "564b4472d51c23ceef525164aeedee4849efdd2770d4e133546e2f696f1a3d2d",
+  "manifest_sha256": "6c3b837279d0cbe7e766eafc2ef6ed6b187dfb6ee9e51cef4ce3536c51028578",
+  "rejudge_of": "2026-11-13_topk20.json",
+  "rejudge": {
+    "prompt_version": "text-v2",
+    "repeat": 3,
+    "text_judged": 8,
+    "text_consistent": 8,
+    "prompt_tokens": 8037,
+    "completion_tokens": 2279,
+    "cost_usd": 0.005145899999999999
+  },
+  "summary": {
+    "dev": {
+      "n": 30,
+      "n_answerable": 27,
+      "hit_at_5": 0.9259259259259259,
+      "mrr_at_10": 0.8302469135802469,
+      "citation_precision": 0.5555555555555556,
+      "latency_p50_s": 2.0965,
+      "latency_p95_s": 2.8107,
+      "number_accuracy": 0.9473684210526315,
+      "n_number": 19,
+      "text_correct": 0.875,
+      "text_partial": 0.125,
+      "text_score": 0.9375,
+      "n_text": 8,
+      "not_found_accuracy": 1.0,
+      "n_not_found": 3,
+      "false_refusal_rate": 0.037037037037037035,
+      "faithfulness_supported": 1.0,
+      "judge_parse_errors": 0,
+      "avg_prompt_tokens": 1061.9333333333334,
+      "avg_completion_tokens": 45.13333333333333,
+      "avg_cost_usd": 0.00037274,
+      "judge_cost_usd_total": 0.01629,
+      "audit_ids": [
+        "h04",
+        "h07",
+        "h11",
+        "h12",
+        "h14",
+        "a01",
+        "a06",
+        "a10"
+      ]
+    }
+  },
+  "records": [
+    {
+      "id": "h01",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's total revenue and other income in 2025?",
+      "retrieval_s": 0.912,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 70,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9995
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 69,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9995
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9992
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 154,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.999
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 153,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9964
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 60,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.98
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 50,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9769
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 48,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9741
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8994
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 55,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8459
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.7789
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 87,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6243
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6061
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.5031
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.191
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1601
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0528
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0045
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "HKEX's total revenue and other income in 2025 was $29,161 million (Hong Kong Exchanges and Clearing Limited FY2025 p.10; Hong Kong Exchanges and Clearing Limited FY2025 p.75).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1038,
+      "completion_tokens": 47,
+      "generation_s": 2.057,
+      "latency_s": 2.969,
+      "cost_usd": 0.00036779999999999994,
+      "refused": false,
+      "correct": true,
+      "gold_value": 29161000000.0,
+      "matched_value": 29161000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both cited excerpts state that HKEX's total revenue and other income in 2025 was $29,161 million, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0003804,
+      "audit": false
+    },
+    {
+      "id": "h02",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's profit attributable to shareholders for 2025?",
+      "retrieval_s": 0.755,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9998
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 15,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 76,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9994
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 231,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9987
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9975
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 13,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9963
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 83,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9931
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.986
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 128,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.982
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 136,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9663
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9582
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9334
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8803
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6073
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 20,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.4088
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.374
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0306
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 194,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0139
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "HKEX's profit attributable to shareholders for 2025 was $17,754 million, 36 per cent higher than 2024 (Hong Kong Exchanges and Clearing Limited FY2025 p.10).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 853,
+      "completion_tokens": 42,
+      "generation_s": 0.979,
+      "latency_s": 1.734,
+      "cost_usd": 0.00030629999999999996,
+      "refused": false,
+      "correct": true,
+      "gold_value": 17754000000.0,
+      "matched_value": 17754000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.10 states profit attributable to shareholders was $17,754 million, 36 per cent higher than 2024, matching every claim in the answer.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.00032969999999999994,
+      "audit": false
+    },
+    {
+      "id": "h03",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's basic earnings per share for 2025?",
+      "retrieval_s": 0.794,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 12,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9998
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9998
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 11,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 166,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9913
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9696
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9412
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9292
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 100,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9059
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 55,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8714
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 40,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.2856
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 213,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1258
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1078
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1058
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 20,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0944
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 40,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.089
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0543
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 154,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0159
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0012
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "HKEX's basic earnings per share for 2025 was $14.05 (Hong Kong Exchanges and Clearing Limited FY2025 p.11; Hong Kong Exchanges and Clearing Limited FY2025 p.12).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1060,
+      "completion_tokens": 45,
+      "generation_s": 1.375,
+      "latency_s": 2.169,
+      "cost_usd": 0.000372,
+      "refused": false,
+      "correct": true,
+      "gold_value": 14.05,
+      "matched_value": 14.05,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both excerpts state basic earnings per share for 2025 was $14.05, matching the answer's claim and citations.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0003807,
+      "audit": false
+    },
+    {
+      "id": "h04",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's total dividend per share for 2025?",
+      "retrieval_s": 0.739,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 136,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 146,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 136,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9998
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 11,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 146,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9995
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 166,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9994
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9993
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 231,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9986
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 128,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9952
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9756
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9672
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 125,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.874
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.863
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.3063
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 68,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.2297
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 214,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.2038
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 206,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.109
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.08
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0697
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 20,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0323
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "HKEX's total dividends for 2025 amounted to $12.52 per share (2024: $9.26 per share) (Hong Kong Exchanges and Clearing Limited FY2025 p.136).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1153,
+      "completion_tokens": 43,
+      "generation_s": 1.051,
+      "latency_s": 1.79,
+      "cost_usd": 0.0003975,
+      "refused": false,
+      "correct": true,
+      "gold_value": 12.52,
+      "matched_value": 12.52,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's claim that HKEX's total dividends for 2025 amounted to $12.52 per share (2024: $9.26 per share) is directly stated in the p.136 excerpt.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0004296,
+      "audit": true
+    },
+    {
+      "id": "h05",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's EBITDA margin in 2025?",
+      "retrieval_s": 0.748,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 69,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 69,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9995
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 15,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9991
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 62,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9957
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 48,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9951
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 71,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9938
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 60,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9835
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 50,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9765
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 186,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9716
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9368
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8865
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.5258
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 68,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1438
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 206,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1399
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0854
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 39,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0725
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0495
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0309
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0008
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "HKEX's EBITDA margin in 2025 was 79 per cent, 5 percentage points higher than 2024 (Hong Kong Exchanges and Clearing Limited FY2025 p.10). Note that a separate excerpt for the Data and Connectivity Segment reports an EBITDA margin of 81% for 2025, up from 80% in 2024 (Hong Kong Exchanges and Clearing Limited FY2025 p.69).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1020,
+      "completion_tokens": 87,
+      "generation_s": 1.674,
+      "latency_s": 2.422,
+      "cost_usd": 0.0004104,
+      "refused": false,
+      "correct": true,
+      "gold_value": 79.0,
+      "matched_value": 79.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "All claims are directly backed: p.10 states EBITDA margin of 79%, 5 percentage points higher than 2024, and p.69 states the Data and Connectivity Segment EBITDA margin of 81% for 2025 versus 80% in 2024.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.00041789999999999997,
+      "audit": false
+    },
+    {
+      "id": "h06",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was the Headline ADT (average daily turnover) on the Stock Exchange in 2025?",
+      "retrieval_s": 0.695,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 53,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9954
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 76,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9883
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 83,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9737
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 11,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9632
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8556
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8262
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 76,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8206
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 236,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6725
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6182
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.5095
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 49,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.4513
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 51,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0663
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 53,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0363
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 57,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0166
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0013
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0007
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 63,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0007
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 68,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0002
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0001
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 206,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0001
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "The Headline ADT on the Stock Exchange in 2025 was $249.8 billion (Hong Kong Exchanges and Clearing Limited FY2025 p.53) (Hong Kong Exchanges and Clearing Limited FY2025 p.83).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1107,
+      "completion_tokens": 49,
+      "generation_s": 1.304,
+      "latency_s": 1.999,
+      "cost_usd": 0.00039089999999999996,
+      "refused": false,
+      "correct": true,
+      "gold_value": 249800000000.0,
+      "matched_value": 249800000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both cited excerpts state the 2025 Headline ADT on the Stock Exchange was $249.8 billion, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0003987,
+      "audit": false
+    },
+    {
+      "id": "h07",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "How much was raised through IPOs on HKEX in 2025?",
+      "retrieval_s": 0.801,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 55,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 23,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 55,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 24,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9837
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9821
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 73,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9703
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6723
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 49,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.4557
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.3067
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 62,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1686
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1284
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 206,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0976
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 103,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0402
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 68,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0353
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0314
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 130,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0302
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0261
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0059
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0003
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 1.0,
+      "answer": "In 2025, IPOs on HKEX raised over $286.9 billion from 119 listings (Hong Kong Exchanges and Clearing Limited FY2025 p.23). The same figure appears on p.55, which states there were 119 new listings in 2025 raising $286.9 billion (Hong Kong Exchanges and Clearing Limited FY2025 p.55).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1109,
+      "completion_tokens": 78,
+      "generation_s": 1.146,
+      "latency_s": 1.947,
+      "cost_usd": 0.00042629999999999995,
+      "refused": false,
+      "correct": true,
+      "gold_value": 286900000000.0,
+      "matched_value": 286900000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both cited figures—119 listings raising over $286.9 billion in 2025—appear verbatim on p.23 and p.55 of the excerpts.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.00041579999999999997,
+      "audit": true
+    },
+    {
+      "id": "h08",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What were HKEX's total assets at 31 December 2025?",
+      "retrieval_s": 0.744,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9994
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 206,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9977
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 136,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9973
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9969
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 79,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9965
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 198,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9918
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 174,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9888
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 172,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9837
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 222,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9828
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 200,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9826
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9797
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 166,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.973
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 189,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.766
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.708
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.61
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 149,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0349
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0116
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 68,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0096
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0092
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0028
+        }
+      ],
+      "hit_at_5": false,
+      "rr_at_10": 0.0,
+      "citation_precision": 0.0,
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 840,
+      "completion_tokens": 9,
+      "generation_s": 0.936,
+      "latency_s": 1.68,
+      "cost_usd": 0.0002628,
+      "refused": true,
+      "correct": false,
+      "gold_value": 580775000000.0,
+      "candidates": [],
+      "judge_cost_usd": 0.0,
+      "audit": false
+    },
+    {
+      "id": "h09",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was HKEX's net cash inflow from operating activities in 2025?",
+      "retrieval_s": 0.841,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 147,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 205,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9946
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 205,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9912
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 147,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9894
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8244
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.5511
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 26,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.418
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 160,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.3778
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 147,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.3761
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 19,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.2797
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.2644
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 68,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.235
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1623
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 124,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1291
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1211
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 43,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0075
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0011
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 160,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.001
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 170,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0005
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 169,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0005
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "HKEX's net cash inflow from operating activities in 2025 was $25,627 million (Hong Kong Exchanges and Clearing Limited FY2025 p.147).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1147,
+      "completion_tokens": 34,
+      "generation_s": 1.241,
+      "latency_s": 2.082,
+      "cost_usd": 0.0003849,
+      "refused": false,
+      "correct": true,
+      "gold_value": 25627000000.0,
+      "matched_value": 25627000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.147 explicitly states 'Net cash inflow from operating activities 25,627' for 2025, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.00041010000000000005,
+      "audit": false
+    },
+    {
+      "id": "h10",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Who is the Chairman of HKEX?",
+      "retrieval_s": 0.834,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 92,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9985
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 96,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9944
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9844
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9561
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 128,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9552
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 109,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9507
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 101,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.69
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.6022
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 106,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.3307
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1655
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0533
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 121,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0394
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0144
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 135,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0104
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0055
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 95,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.003
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0023
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0021
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 81,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0017
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 82,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0005
+        }
+      ],
+      "hit_at_5": false,
+      "rr_at_10": 0.0,
+      "citation_precision": 0.0,
+      "answer": "Carlson Tong is the Chairman (INED) of HKEX (Hong Kong Exchanges and Clearing Limited FY2025 p.92).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1055,
+      "completion_tokens": 28,
+      "generation_s": 1.277,
+      "latency_s": 2.111,
+      "cost_usd": 0.0003501,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate correctly identifies Carlson Tong as the Chairman of HKEX, covering the single factual point.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.92 explicitly identifies Carlson Tong as Chairman (INED) of HKEX, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0009912,
+      "audit": false,
+      "text_label_previous": "correct",
+      "text_points": [
+        {
+          "point": "Carlson Tong is the Chairman of HKEX",
+          "covered": true,
+          "contradicted": false
+        }
+      ],
+      "text_label_repeats": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "text_label_consistent": true
+    },
+    {
+      "id": "h11",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Who is HKEX's Chief Executive Officer?",
+      "retrieval_s": 0.907,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 92,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9986
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9985
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 43,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9985
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 33,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9976
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 41,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9905
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 33,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9881
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 109,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9768
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 96,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9721
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 39,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.97
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 124,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9662
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 37,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9499
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 35,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9093
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 161,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.5023
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 86,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.4114
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 114,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.2017
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 95,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1962
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 21,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0848
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0604
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 81,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.015
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 90,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0004
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.3333333333333333,
+      "citation_precision": 0.3333333333333333,
+      "answer": "Bonnie Y Chan is HKEX's Chief Executive Officer (Hong Kong Exchanges and Clearing Limited FY2025 p.43; Hong Kong Exchanges and Clearing Limited FY2025 p.92).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 743,
+      "completion_tokens": 40,
+      "generation_s": 1.452,
+      "latency_s": 2.359,
+      "cost_usd": 0.00027089999999999997,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate states that Bonnie Y Chan is HKEX's Chief Executive Officer, covering the single factual point.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both excerpts explicitly identify Bonnie Y Chan as HKEX's Chief Executive Officer, matching the answer's claim and citations.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0009318,
+      "audit": true,
+      "text_label_previous": "correct",
+      "text_points": [
+        {
+          "point": "HKEX's Chief Executive Officer is Bonnie Y Chan",
+          "covered": true,
+          "contradicted": false
+        }
+      ],
+      "text_label_repeats": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "text_label_consistent": true
+    },
+    {
+      "id": "h12",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Which firm was HKEX's external auditor for the 2025 financial year?",
+      "retrieval_s": 1.273,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 103,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 138,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 111,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9986
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9964
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 142,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9936
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 102,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9861
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9102
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.7818
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.5462
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.5163
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 121,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5154
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 111,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.4938
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 111,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.4833
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 120,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.2682
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 142,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0736
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 142,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0701
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 116,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0242
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 115,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0211
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 139,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0209
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 147,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.003
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "PricewaterhouseCoopers (PwC) was HKEX's external auditor for the financial year ended 31 December 2025 (Hong Kong Exchanges and Clearing Limited FY2025 p.103; Hong Kong Exchanges and Clearing Limited FY2025 p.138).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1153,
+      "completion_tokens": 56,
+      "generation_s": 1.497,
+      "latency_s": 2.77,
+      "cost_usd": 0.00041309999999999996,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate states the single factual point from the reference answer, identifying PwC as HKEX's external auditor for FY2025.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both cited excerpts state that PricewaterhouseCoopers (PwC) was HKEX's external auditor for the financial year ended 31 December 2025.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0011757,
+      "audit": true,
+      "text_label_previous": "correct",
+      "text_points": [
+        {
+          "point": "PricewaterhouseCoopers (PwC) was HKEX's external auditor for the 2025 financial year",
+          "covered": true,
+          "contradicted": false
+        }
+      ],
+      "text_label_repeats": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "text_label_consistent": true
+    },
+    {
+      "id": "h13",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "What drove the growth in HKEX's core business revenue in 2025?",
+      "retrieval_s": 1.281,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9995
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 15,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9958
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9955
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9947
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 11,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9944
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 13,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.959
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 22,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9479
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9473
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 22,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8834
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8351
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 73,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8115
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 19,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.7775
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 87,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.7588
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 26,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6181
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.3073
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1942
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.118
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0045
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0018
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0005
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "In 2025, HKEX's core business revenue was up 32 per cent against 2024, attributable to increases in trading and clearing fees driven by record volumes across the Cash, Derivatives and Commodities Markets (Hong Kong Exchanges and Clearing Limited FY2025 p.10).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1100,
+      "completion_tokens": 58,
+      "generation_s": 1.466,
+      "latency_s": 2.747,
+      "cost_usd": 0.0003996,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate covers all factual points from the reference answer without contradiction.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's claim that 2025 core business revenue rose 32% versus 2024 due to higher trading and clearing fees from record volumes across Cash, Derivatives and Commodities Markets is directly stated in the p.10 excerpt.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0013368,
+      "audit": false,
+      "text_label_previous": "correct",
+      "text_points": [
+        {
+          "point": "Core business revenue was up 32%",
+          "covered": true,
+          "contradicted": false
+        },
+        {
+          "point": "Growth was driven by higher trading and clearing fees",
+          "covered": true,
+          "contradicted": false
+        },
+        {
+          "point": "Record volumes across the Cash, Derivatives and Commodities Markets drove the fee increases",
+          "covered": true,
+          "contradicted": false
+        }
+      ],
+      "text_label_repeats": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "text_label_consistent": true
+    },
+    {
+      "id": "h14",
+      "split": "dev",
+      "answer_type": "not_found",
+      "question": "How much revenue did HKEX earn from cryptocurrency trading in 2025?",
+      "retrieval_s": 0.907,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9993
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9988
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9974
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9969
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9924
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 154,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9773
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 62,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8141
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.785
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6005
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 152,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.2787
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 18,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.089
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 68,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0863
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 155,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0665
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0602
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0158
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 101,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0111
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 101,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0054
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 140,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0017
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 152,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0013
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 1,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0011
+        }
+      ],
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1120,
+      "completion_tokens": 9,
+      "generation_s": 1.045,
+      "latency_s": 1.952,
+      "cost_usd": 0.0003468,
+      "refused": true,
+      "correct": true,
+      "judge_cost_usd": 0.0,
+      "audit": true
+    },
+    {
+      "id": "h15",
+      "split": "dev",
+      "answer_type": "not_found",
+      "question": "What was HKEX's profit attributable to shareholders for the first quarter of 2026?",
+      "retrieval_s": 0.897,
+      "retrieved": [
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.999
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 11,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9983
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9978
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9978
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 230,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9884
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 231,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9761
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 76,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9743
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9713
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 83,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.9016
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 13,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.892
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.8056
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6031
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.4772
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.2425
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 136,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.2265
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1735
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 200,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1672
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 238,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1569
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0591
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0315
+        }
+      ],
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 927,
+      "completion_tokens": 9,
+      "generation_s": 1.154,
+      "latency_s": 2.051,
+      "cost_usd": 0.0002889,
+      "refused": true,
+      "correct": true,
+      "judge_cost_usd": 0.0,
+      "audit": false
+    },
+    {
+      "id": "a01",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's value of new business (VONB) in 2025?",
+      "retrieval_s": 0.76,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9998
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 24,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9995
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9993
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 362,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9992
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 325,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9992
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 133,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9992
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 326,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9985
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 6,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9969
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 27,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9964
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 27,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9943
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 335,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9922
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 336,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.991
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 327,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9892
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 61,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9847
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9837
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.957
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 27,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.947
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 216,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.937
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 8,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0033
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "AIA's value of new business (VONB) in 2025 was US$5,516 million, a 15 per cent increase to a record high (AIA Group Limited FY2025 p.16; AIA Group Limited FY2025 p.24).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1176,
+      "completion_tokens": 57,
+      "generation_s": 1.46,
+      "latency_s": 2.22,
+      "cost_usd": 0.0004212,
+      "refused": false,
+      "correct": true,
+      "gold_value": 5516000000.0,
+      "matched_value": 5516000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both excerpts state VONB was US$5,516 million, a 15 per cent increase to a record high in 2025, matching every claim in the answer.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0004299,
+      "audit": true
+    },
+    {
+      "id": "a02",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's closing EV Equity at 31 December 2025, after shareholder dividends and share buy-backs?",
+      "retrieval_s": 0.868,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 329,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 329,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 31,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9995
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 41,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9992
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 331,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9849
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 51,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9846
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 328,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9832
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 51,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9814
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 31,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9762
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9716
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 30,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9613
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 30,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.954
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 29,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9336
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.925
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 300,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.888
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 301,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.7393
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5781
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 277,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5035
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5016
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 103,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0343
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 1.0,
+      "answer": "AIA's closing EV Equity was US$79,678 million as at 31 December 2025 (AIA Group Limited FY2025 p.329; AIA Group Limited FY2025 p.31).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 990,
+      "completion_tokens": 44,
+      "generation_s": 1.473,
+      "latency_s": 2.341,
+      "cost_usd": 0.0003498,
+      "refused": false,
+      "correct": true,
+      "gold_value": 79678000000.0,
+      "matched_value": 79678000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's sole claim that AIA's closing EV Equity was US$79,678 million as at 31 December 2025 is directly stated in both cited excerpts.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0003671999999999999,
+      "audit": false
+    },
+    {
+      "id": "a03",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's operating profit after tax (OPAT) attributable to shareholders in 2025?",
+      "retrieval_s": 0.917,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 213,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9995
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 191,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9995
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 133,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9992
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 35,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9987
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 195,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9986
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9983
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9971
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 194,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9966
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 213,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9961
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 35,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9951
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 154,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.994
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 191,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9746
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 197,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.943
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 200,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8726
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 30,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8374
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 210,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1458
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 209,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0533
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "AIA's operating profit after tax (OPAT) was a record high of US$7,136 million in 2025 (AIA Group Limited FY2025 p.16). This is also confirmed on p.25, which states OPAT grew strongly to US$7,136 million, up by 12 per cent per share in 2025 (AIA Group Limited FY2025 p.25).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1123,
+      "completion_tokens": 85,
+      "generation_s": 1.486,
+      "latency_s": 2.403,
+      "cost_usd": 0.0004389,
+      "refused": false,
+      "correct": true,
+      "gold_value": 7136000000.0,
+      "matched_value": 7136000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both cited claims—OPAT of US$7,136 million as a record high in 2025 and 12 per cent per share growth—are directly stated on p.16 and p.25 of the excerpts.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0004326,
+      "audit": false
+    },
+    {
+      "id": "a04",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's net profit attributable to shareholders in 2025?",
+      "retrieval_s": 0.848,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 213,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9993
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 154,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9988
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 213,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9985
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 191,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9981
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9951
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 155,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9949
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 48,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.986
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 47,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9834
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 194,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9743
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 16,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9593
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 312,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.907
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 213,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8486
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 191,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8376
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 30,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.7693
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 281,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.7588
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.4015
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 76,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.2729
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 15,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.2336
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 13,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1713
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0369
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 1.0,
+      "answer": "AIA's net profit attributable to shareholders of AIA Group Limited in 2025 was US$6,234 million (AIA Group Limited FY2025 p.213; AIA Group Limited FY2025 p.154).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 988,
+      "completion_tokens": 47,
+      "generation_s": 1.203,
+      "latency_s": 2.051,
+      "cost_usd": 0.00035279999999999996,
+      "refused": false,
+      "correct": true,
+      "gold_value": 6234000000.0,
+      "matched_value": 6234000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both cited excerpts state that net profit attributable to shareholders of AIA Group Limited in 2025 was US$6,234 million.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0003609,
+      "audit": false
+    },
+    {
+      "id": "a05",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's insurance revenue in 2025?",
+      "retrieval_s": 0.863,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 200,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9934
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 178,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9879
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 201,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.984
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 356,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9807
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 260,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.969
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 177,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.968
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 252,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9604
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 177,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9552
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 253,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8762
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 356,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8492
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 180,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8382
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 297,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.6204
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 178,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.3347
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1118
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 88,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0679
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0384
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0276
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 8,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0206
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0201
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 153,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0102
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.3333333333333333,
+      "citation_precision": 0.3333333333333333,
+      "answer": "AIA's total insurance revenue in 2025 was US$21,618m (AIA Group Limited FY2025 p.201).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1115,
+      "completion_tokens": 29,
+      "generation_s": 1.107,
+      "latency_s": 1.97,
+      "cost_usd": 0.00036930000000000003,
+      "refused": false,
+      "correct": true,
+      "gold_value": 21618000000.0,
+      "matched_value": 21618000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt from p.201 explicitly states total insurance revenue of US$21,618m for the year ended 31 December 2025, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0004041,
+      "audit": false
+    },
+    {
+      "id": "a06",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What were AIA's total assets at 31 December 2025?",
+      "retrieval_s": 0.74,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 43,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 219,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9982
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 156,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9977
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 329,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.996
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 46,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9959
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 307,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9797
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 51,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9377
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9362
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 277,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8497
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 79,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.6867
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 249,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.6665
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 144,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.6148
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 172,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.5505
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 209,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4718
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 328,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4295
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 326,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4142
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 140,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4034
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 174,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.2378
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 214,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1843
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 222,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0856
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer": "AIA's total assets at 31 December 2025 were US$345,423 million (AIA Group Limited FY2025 p.43; AIA Group Limited FY2025 p.156).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1122,
+      "completion_tokens": 42,
+      "generation_s": 1.117,
+      "latency_s": 1.857,
+      "cost_usd": 0.0003869999999999999,
+      "refused": false,
+      "correct": true,
+      "gold_value": 345423000000.0,
+      "matched_value": 345423000000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both cited excerpts state total assets were US$345,423 million at 31 December 2025, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.00039959999999999996,
+      "audit": true
+    },
+    {
+      "id": "a07",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What final dividend per share (in Hong Kong cents) did AIA's Board recommend for 2025?",
+      "retrieval_s": 0.746,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 10,
+          "file_name": "1299_2025_en.pdf",
+          "score": 1.0
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 345,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 94,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 310,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 23,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9999
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9998
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 125,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9998
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 214,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 214,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 344,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 9,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9997
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 112,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.6238
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 82,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5973
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5034
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.2544
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 106,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1228
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 135,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1208
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 166,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.1124
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 107,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0008
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 1.0,
+      "answer": "AIA's Board recommended a final dividend of 144.08 Hong Kong cents per share for 2025 (AIA Group Limited FY2025 p.10; AIA Group Limited FY2025 p.345; AIA Group Limited FY2025 p.17).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1137,
+      "completion_tokens": 56,
+      "generation_s": 1.25,
+      "latency_s": 1.996,
+      "cost_usd": 0.00040829999999999995,
+      "refused": false,
+      "correct": true,
+      "gold_value": 144.08,
+      "matched_value": 144.08,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "All three excerpts state the Board recommended a final dividend of 144.08 Hong Kong cents per share for 2025, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.000411,
+      "audit": false
+    },
+    {
+      "id": "a08",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was AIA's operating ROE for full year 2025?",
+      "retrieval_s": 0.848,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9988
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9983
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 34,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9961
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 23,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9931
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 358,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9599
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 330,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.893
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 272,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8092
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 328,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5493
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 307,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5031
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 36,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.3229
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 70,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1686
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 249,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1254
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 214,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.118
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 209,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0936
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0586
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0422
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 138,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0373
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 147,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0367
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0242
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0132
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 1.0,
+      "answer": "AIA's full year operating ROE increased to a record high of 15.5 per cent in 2025 (AIA Group Limited FY2025 p.25; AIA Group Limited FY2025 p.34).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1106,
+      "completion_tokens": 47,
+      "generation_s": 1.05,
+      "latency_s": 1.898,
+      "cost_usd": 0.0003882,
+      "refused": false,
+      "correct": true,
+      "gold_value": 15.5,
+      "matched_value": 15.5,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "Both excerpts state that full year operating ROE increased to a record high of 15.5 per cent in 2025, matching the answer's claim.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0004023,
+      "audit": false
+    },
+    {
+      "id": "a09",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "How many employees did AIA have as at 31 December 2025, excluding MediCard, Amplify Health, New Medical Center, AcuScan, its joint venture and its associate?",
+      "retrieval_s": 0.952,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 70,
+          "file_name": "1299_2025_en.pdf",
+          "score": 1.0
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9978
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 2,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9958
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 306,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9917
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 217,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9751
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 217,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9736
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 201,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5761
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 252,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4264
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 253,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1896
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 261,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1065
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 350,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0154
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 182,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0142
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 181,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0122
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 19,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0111
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 92,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0047
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0028
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 186,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0028
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 13,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0022
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 150,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0021
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 148,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0004
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "As at 31 December 2025, AIA had a total of 25,981 employees, excluding MediCard, Amplify Health, New Medical Center, AcuScan, its joint venture Tata AIA Life and its associate China Post Life (AIA Group Limited FY2025 p.70).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1103,
+      "completion_tokens": 62,
+      "generation_s": 1.12,
+      "latency_s": 2.072,
+      "cost_usd": 0.00040529999999999993,
+      "refused": false,
+      "correct": true,
+      "gold_value": 25981.0,
+      "matched_value": 25981.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer accurately restates the employee count of 25,981 as at 31 December 2025 and the list of excluded entities from the p.70 note.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0004011,
+      "audit": false
+    },
+    {
+      "id": "a10",
+      "split": "dev",
+      "answer_type": "number",
+      "question": "What was the total estimated remuneration payable by AIA to PricewaterhouseCoopers for 2025?",
+      "retrieval_s": 1.118,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 121,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9996
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 125,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9519
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 306,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.7428
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 264,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.7143
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 264,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5538
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 131,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4549
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 304,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.402
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 303,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.3959
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.206
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 303,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1674
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 329,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0476
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 171,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0371
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 298,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0299
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0249
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 267,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.012
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 219,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0116
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0093
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 219,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0036
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 124,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.003
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 120,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0002
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "The total estimated remuneration payable by the Group to PricewaterhouseCoopers for the year ended 31 December 2025 was US$34.5 million (2024: US$31.8 million) (AIA Group Limited FY2025 p.121).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1196,
+      "completion_tokens": 54,
+      "generation_s": 1.298,
+      "latency_s": 2.416,
+      "cost_usd": 0.0004236,
+      "refused": false,
+      "correct": true,
+      "gold_value": 34500000.0,
+      "matched_value": 34500000.0,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's claim that total estimated remuneration payable to PricewaterhouseCoopers for FY2025 was US$34.5 million (2024: US$31.8 million) is directly stated in the p.121 excerpt.",
+      "unsupported_claims": [],
+      "judge_model": "deepseek-flash",
+      "judge_cost_usd": 0.0004476,
+      "audit": true
+    },
+    {
+      "id": "a11",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Who was the Chairman of AIA at 31 December 2025?",
+      "retrieval_s": 0.872,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9927
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 114,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.986
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 120,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9798
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 95,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9765
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 128,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9758
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 305,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9666
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 8,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.6198
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 138,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5698
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 135,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5685
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 143,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4488
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 95,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4343
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 105,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4109
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.3846
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 209,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1471
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 78,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.138
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0979
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0348
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0275
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 126,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0023
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 310,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0009
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.25,
+      "citation_precision": 0.0,
+      "answer": "Sir Mark Tucker was the Independent Non-executive Chairman of the Company, having succeeded Mr Edmund Tse on 1 October 2025 (AIA Group Limited FY2025 p.120).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1170,
+      "completion_tokens": 39,
+      "generation_s": 1.473,
+      "latency_s": 2.345,
+      "cost_usd": 0.0003978,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate identifies Sir Mark Tucker as Chairman, matching the reference answer.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The excerpt on p.120 states Sir Mark Tucker is the current Independent Non-executive Chairman and succeeded Mr Edmund Tse on 1 October 2025, matching every claim in the answer.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0010899,
+      "audit": false,
+      "text_label_previous": "correct",
+      "text_points": [
+        {
+          "point": "Sir Mark Edward Tucker was the Chairman of AIA at 31 December 2025",
+          "covered": true,
+          "contradicted": false
+        }
+      ],
+      "text_label_repeats": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "text_label_consistent": true
+    },
+    {
+      "id": "a12",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Who is AIA's Group Chief Executive and President?",
+      "retrieval_s": 0.743,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 114,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9991
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 80,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.998
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 14,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9969
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 120,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.991
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 90,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9802
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 90,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9766
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 95,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9751
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 113,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9746
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 120,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9525
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 88,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9397
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 90,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9303
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 91,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8037
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 105,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.736
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 82,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.724
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 128,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.6654
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 129,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5271
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 132,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5187
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 8,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4522
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 106,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.2188
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0041
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 0.5,
+      "citation_precision": 0.6666666666666666,
+      "answer": "AIA's Group Chief Executive and President is Mr LEE Yuan Siong (AIA Group Limited FY2025 p.114; AIA Group Limited FY2025 p.80; AIA Group Limited FY2025 p.14).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 846,
+      "completion_tokens": 49,
+      "generation_s": 1.031,
+      "latency_s": 1.774,
+      "cost_usd": 0.00031259999999999995,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate correctly identifies Lee Yuan Siong as AIA's Group Chief Executive and President, matching the reference answer.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "All three excerpts identify Mr LEE Yuan Siong as Group Chief Executive and President of AIA.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0009945,
+      "audit": false,
+      "text_label_previous": "correct",
+      "text_points": [
+        {
+          "point": "Lee Yuan Siong is AIA's Group Chief Executive and President",
+          "covered": true,
+          "contradicted": false
+        }
+      ],
+      "text_label_repeats": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "text_label_consistent": true
+    },
+    {
+      "id": "a13",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "What is AIA's capital management payout target?",
+      "retrieval_s": 1.592,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 47,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9975
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9964
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 25,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9876
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 26,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9721
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 24,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9038
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 288,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1078
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 274,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.052
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 286,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0462
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 297,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0274
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 283,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0191
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 302,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0185
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 233,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0168
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 244,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.013
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0124
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 250,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0059
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 234,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0022
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 210,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0016
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0001
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 232,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0001
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 11,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0001
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 1.0,
+      "answer": "AIA's capital management policy targets to pay out 75 per cent of annual net FSG each year to shareholders through dividends and a share buy-back (AIA Group Limited FY2025 p.17; also stated in AIA Group Limited FY2025 p.25 and AIA Group Limited FY2025 p.47).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1197,
+      "completion_tokens": 67,
+      "generation_s": 1.252,
+      "latency_s": 2.844,
+      "cost_usd": 0.00043949999999999995,
+      "refused": false,
+      "text_label": "partially_correct",
+      "text_reason": "The candidate covers the 75% net FSG payout via dividends and buy-backs but omits the regular reviews to return excess capital.",
+      "judge_model": "deepseek-flash",
+      "correct": false,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's claim that AIA's capital management policy targets a 75 per cent payout of annual net FSG through dividends and share buy-back is directly stated in all three cited excerpts (p.17, p.25, p.47).",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0014750999999999998,
+      "audit": false,
+      "text_label_previous": "correct",
+      "text_points": [
+        {
+          "point": "Annual payout target of 75 per cent of annual net free surplus generation (net FSG)",
+          "covered": true,
+          "contradicted": false
+        },
+        {
+          "point": "Payout delivered through dividends and share buy-backs",
+          "covered": true,
+          "contradicted": false
+        },
+        {
+          "point": "Regular reviews to return capital in excess of needs",
+          "covered": false,
+          "contradicted": false
+        }
+      ],
+      "text_label_repeats": [
+        "partially_correct",
+        "partially_correct",
+        "partially_correct"
+      ],
+      "text_label_consistent": true
+    },
+    {
+      "id": "a14",
+      "split": "dev",
+      "answer_type": "text",
+      "question": "Where and when was the business that is now AIA first established?",
+      "retrieval_s": 1.07,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 2,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9998
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 9,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.2322
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 91,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1372
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 336,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0518
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 92,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0441
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 58,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0336
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 83,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0256
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 61,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0255
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 165,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0231
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0203
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 167,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0148
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 66,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.012
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 27,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0098
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 183,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0089
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 216,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0042
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0029
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 27,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0007
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 116,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0002
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 54,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0001
+        },
+        {
+          "ticker": "0388",
+          "fiscal_year": 2025,
+          "page": 96,
+          "file_name": "0388_2025_en.pdf",
+          "score": 0.0001
+        }
+      ],
+      "hit_at_5": true,
+      "rr_at_10": 1.0,
+      "citation_precision": 0.3333333333333333,
+      "answer": "The business that is now AIA was first established in Shanghai more than a century ago in 1919 (AIA Group Limited FY2025 p.2).",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1012,
+      "completion_tokens": 33,
+      "generation_s": 1.067,
+      "latency_s": 2.137,
+      "cost_usd": 0.0003432,
+      "refused": false,
+      "text_label": "correct",
+      "text_reason": "The candidate states both the location (Shanghai) and the year (1919) from the reference answer.",
+      "judge_model": "deepseek-flash",
+      "correct": true,
+      "faithfulness_label": "supported",
+      "faithfulness_reason": "The answer's claim that the business now known as AIA was first established in Shanghai in 1919 is directly stated in the p.2 excerpt.",
+      "unsupported_claims": [],
+      "judge_cost_usd": 0.0010758,
+      "audit": false,
+      "text_label_previous": "correct",
+      "text_points": [
+        {
+          "point": "Shanghai",
+          "covered": true,
+          "contradicted": false
+        },
+        {
+          "point": "1919",
+          "covered": true,
+          "contradicted": false
+        }
+      ],
+      "text_label_repeats": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "text_label_consistent": true
+    },
+    {
+      "id": "a15",
+      "split": "dev",
+      "answer_type": "not_found",
+      "question": "What was AIA's value of new business from its Japan operations in 2025?",
+      "retrieval_s": 1.556,
+      "retrieved": [
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 7,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9879
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 2,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9749
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 24,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.9022
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 216,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.8406
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 29,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.7926
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 351,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.666
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 358,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5385
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 192,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.5101
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 335,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.4348
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 17,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.3617
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 322,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.3455
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 319,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1535
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 321,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.143
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 91,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.1408
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 27,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0412
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 65,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0385
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 305,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0353
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 74,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0347
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 360,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.0212
+        },
+        {
+          "ticker": "1299",
+          "fiscal_year": 2025,
+          "page": 75,
+          "file_name": "1299_2025_en.pdf",
+          "score": 0.011
+        }
+      ],
+      "answer": "Not found in the provided annual report excerpts.",
+      "generator_model": "deepseek-flash",
+      "prompt_tokens": 1152,
+      "completion_tokens": 9,
+      "generation_s": 1.054,
+      "latency_s": 2.61,
+      "cost_usd": 0.0003564,
+      "refused": true,
+      "correct": true,
+      "judge_cost_usd": 0.0,
+      "audit": false
+    }
+  ]
+}

@@ -46,12 +46,13 @@ from llama_index.retrievers.bm25 import BM25Retriever
 load_dotenv()
 
 # ── 全局配置 ──────────────────────────────────────────────────────────
-TOP_K = int(os.getenv("TOP_K", "10"))           # 混合检索召回数
+TOP_K = int(os.getenv("TOP_K", "20"))           # 混合检索召回数
 RERANK_TOP_N = int(os.getenv("RERANK_TOP_N", "3"))  # Rerank 后精选数
 CHROMA_PATH = os.getenv("CHROMA_PATH", "./storage/chroma")
 DOCSTORE_PATH = os.getenv("DOCSTORE_PATH", "./storage/docstore")
 BM25_PATH = os.getenv("BM25_PATH", "./storage/bm25")
-RERANK_MODE = os.getenv("RERANK_MODE", "local").lower()
+RERANK_MODE = os.getenv("RERANK_MODE", "local").lower()          # local | mock | none
+RETRIEVAL_MODE = os.getenv("RETRIEVAL_MODE", "hybrid").lower()   # hybrid | vector | bm25
 LLM_CONTEXT_WINDOW = int(os.getenv("LLM_CONTEXT_WINDOW", "65536"))
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
 # DeepSeek V4 默认开启 thinking 模式，此时 temperature 不生效；设为 disabled 才能保证 temperature=0
@@ -80,9 +81,11 @@ def effective_config() -> dict[str, Any]:
     """当前生效的检索/生成配置，写进评测结果，便于复现和对比。"""
     has_key = bool(os.getenv("OPENAI_API_KEY", "").strip())
     return {
-        "embed_model": os.getenv("EMBED_MODEL", "BAAI/bge-small-zh-v1.5"),
+        "embed_model": os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5"),
+        "retrieval_mode": RETRIEVAL_MODE,
         "rerank_mode": RERANK_MODE,
         "rerank_model": os.getenv("RERANK_MODEL", "BAAI/bge-reranker-base") if RERANK_MODE == "local" else None,
+        "rerank_device": (os.getenv("RERANK_DEVICE") or "auto") if RERANK_MODE == "local" else None,
         "top_k": TOP_K,
         "rerank_top_n": RERANK_TOP_N,
         "llm_model": os.getenv("LLM_MODEL", "deepseek-chat") if has_key else "mock",
@@ -90,6 +93,7 @@ def effective_config() -> dict[str, Any]:
         "llm_temperature": LLM_TEMPERATURE,
         "llm_thinking": LLM_THINKING or None,
         "llm_max_tokens": int(os.getenv("LLM_MAX_TOKENS", "2048")),
+        "table_chunks": os.getenv("TABLE_CHUNKS", "off").strip().lower() in {"1", "on", "true", "yes"},
     }
 
 
@@ -134,7 +138,7 @@ def _patch_openai_compat() -> None:
 def _init_settings() -> None:
     """初始化 Embedding 与 LLM（LLM 无 Key 时由 stream_chat 走 Mock 分支）。"""
     Settings.embed_model = HuggingFaceEmbedding(
-        model_name=os.getenv("EMBED_MODEL", "BAAI/bge-small-zh-v1.5"),
+        model_name=os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5"),
     )
     api_key = os.getenv("OPENAI_API_KEY", "").strip()
     if api_key:
@@ -160,12 +164,17 @@ def _build_reranker():
     返回完整排序（top_n=TOP_K），由调用方截取前 RERANK_TOP_N 个送给 LLM；
     这样评测能在同一个排序上算 Hit@5 / MRR@10，Cross-Encoder 的计算量不变。
     RERANK_MODE=mock 时使用轻量启发式打分，无需下载 Cross-Encoder，适合快速演示。
+    RERANK_MODE=none 时不重排，直接沿用检索（RRF 融合）后的顺序，作为重排的对照组。
     """
+    if RERANK_MODE == "none":
+        return _NoReranker(top_n=TOP_K)
     if RERANK_MODE == "mock":
         return _MockReranker(top_n=TOP_K)
     return SentenceTransformerRerank(
         model=os.getenv("RERANK_MODEL", "BAAI/bge-reranker-base"),
         top_n=TOP_K,
+        # 留空自动选择（Mac 上是 MPS）；候选很多时 MPS 可能显存不足，可设 RERANK_DEVICE=cpu
+        device=os.getenv("RERANK_DEVICE") or None,
     )
 
 
@@ -222,6 +231,18 @@ def _source_preview(node: NodeWithScore) -> str:
     ]
     excerpt = " ".join(lines) or _source_heading(node)
     return excerpt[:120] + ("…" if len(excerpt) > 120 else "")
+
+
+class _NoReranker:
+    """不重排：保留检索器给出的顺序（对照实验用）。"""
+
+    def __init__(self, top_n: int = 10) -> None:
+        self.top_n = top_n
+
+    def postprocess_nodes(
+        self, nodes: list[NodeWithScore], query_str: str | None = None
+    ) -> list[NodeWithScore]:
+        return nodes[: self.top_n]
 
 
 class _MockReranker:
@@ -296,11 +317,23 @@ class RAGPipeline:
         bm25_path = Path(BM25_PATH)
         if bm25_path.exists():
             bm25_retriever = BM25Retriever.from_persist_dir(str(bm25_path))
+            # 持久化时写死了建索引那一刻的 TOP_K；按当前配置覆盖，否则调 TOP_K 时 BM25 仍只取旧值
+            bm25_retriever.similarity_top_k = TOP_K
         else:
             bm25_retriever = BM25Retriever.from_defaults(
                 docstore=self._index.docstore,
                 similarity_top_k=TOP_K,
             )
+
+        # 消融实验：只用其中一路
+        if RETRIEVAL_MODE == "vector":
+            self._fusion_retriever = vector_retriever
+            return
+        if RETRIEVAL_MODE == "bm25":
+            self._fusion_retriever = bm25_retriever
+            return
+        if RETRIEVAL_MODE != "hybrid":
+            raise ValueError(f"RETRIEVAL_MODE must be hybrid, vector or bm25, got {RETRIEVAL_MODE!r}")
 
         # RRF 融合：mode="reciprocal_rerank" 即倒数排名融合（Reciprocal Rank Fusion）
         self._fusion_retriever = QueryFusionRetriever(

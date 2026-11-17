@@ -21,6 +21,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from llama_index.core import Document, Settings, StorageContext, VectorStoreIndex
 from llama_index.core.node_parser import MarkdownNodeParser, SentenceSplitter
+from llama_index.core.schema import TextNode
 from llama_index.core.storage.docstore import SimpleDocumentStore
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.retrievers.bm25 import BM25Retriever
@@ -93,6 +94,41 @@ def _make_document(text: str, metadata: dict) -> Document:
     )
 
 
+def _tables_enabled() -> bool:
+    from table_chunks import table_chunks_enabled
+    return table_chunks_enabled()
+
+
+def _page_words(path: Path) -> list[list[dict]]:
+    from table_chunks import read_document_words
+    return read_document_words(path)
+
+
+def _documents_for_page(text: str, base_meta: dict, label: str, page_no: int, words: list[dict] | None) -> list[Document]:
+    """One page. TABLE_CHUNKS=off keeps the pypdf text and adds no chunk_type."""
+    meta = {**base_meta, "page": page_no, "section": f"{label} p.{page_no}"}
+    if words is None:
+        return [_make_document(text, meta)] if text.strip() else []
+
+    from table_chunks import detect_tables, prose_without_tables, table_to_chunks
+
+    tables = detect_tables(words)
+    documents: list[Document] = []
+    if not tables:
+        if text.strip():
+            documents.append(_make_document(text, {**meta, "chunk_type": "text"}))
+        return documents
+
+    prose = prose_without_tables(words, tables)
+    if prose.strip():
+        documents.append(_make_document(prose, {**meta, "chunk_type": "text"}))
+    context = f"{meta.get('company', label)} FY{meta.get('fiscal_year', '')} p.{page_no}".strip()
+    for table in tables:
+        for chunk in table_to_chunks(table, context=context):
+            documents.append(_make_document(chunk, {**meta, "chunk_type": "table"}))
+    return documents
+
+
 def load_documents(docs_dir: Path, manifest: dict[str, dict[str, str]] | None = None) -> list[Document]:
     """
     扫描目录，加载所有支持的文档。
@@ -141,16 +177,19 @@ def load_documents(docs_dir: Path, manifest: dict[str, dict[str, str]] | None = 
                 else filepath.name
             )
             pages = _read_pdf_pages(filepath)
+            page_words = _page_words(filepath) if _tables_enabled() else None
             kept = 0
             for page_no, text in enumerate(pages, start=1):
-                if not text.strip():
-                    continue
-                documents.append(_make_document(
+                page_docs = _documents_for_page(
                     text,
-                    {**base_meta, "page": page_no, "section": f"{label} p.{page_no}"},
-                ))
-                kept += 1
-            print(f"        {filepath.name}: {len(pages)} 页，{kept} 页有文本")
+                    base_meta,
+                    label,
+                    page_no,
+                    None if page_words is None else page_words[page_no - 1],
+                )
+                documents.extend(page_docs)
+                kept += len(page_docs)
+            print(f"        {filepath.name}: {len(pages)} 页，{kept} 个页面文档")
             if kept == 0:
                 print(f"  ⚠ {filepath.name} 没有可抽取的文本（可能是扫描件）")
             continue
@@ -167,19 +206,19 @@ def load_documents(docs_dir: Path, manifest: dict[str, dict[str, str]] | None = 
     return documents
 
 
-def semantic_chunk_documents(documents: list[Document]) -> list:
-    """
-    语义切块策略：
-    ─────────────
-    1. MarkdownNodeParser：按 # / ## / ### 标题层级切分，保留文档结构语义；
-       金融合规文档天然按「章-节-条」组织，按标题切比固定 512 token 更合理。
-    2. SentenceSplitter：对过长章节做二次切分（chunk_size=384, overlap=48），
-       保证每个 chunk 可独立嵌入且上下文连贯。
-    3. 非 Markdown 文件（.txt / .pdf）也能被 SentenceSplitter 正常切分。
-    """
+def _node_from_document(document: Document) -> TextNode:
+    return TextNode(
+        text=document.text,
+        metadata=dict(document.metadata),
+        excluded_embed_metadata_keys=list(document.excluded_embed_metadata_keys),
+        excluded_llm_metadata_keys=list(document.excluded_llm_metadata_keys),
+    )
+
+
+def _split_text_documents(documents: list[Document]) -> list:
+    """Markdown 标题切分后再按句切。表格 chunk 不走这里，避免表头和数字再次分开。"""
     md_parser = MarkdownNodeParser()
     md_nodes = md_parser.get_nodes_from_documents(documents)
-
     splitter = SentenceSplitter(chunk_size=384, chunk_overlap=48)
     final_nodes = splitter.get_nodes_from_documents(
         [
@@ -192,8 +231,6 @@ def semantic_chunk_documents(documents: list[Document]) -> list:
             for n in md_nodes
         ]
     )
-
-    # 注入 section 元数据，便于 RAG 回答时引用来源
     for node in final_nodes:
         headers = (node.metadata.get("header_path", "") or node.metadata.get("Header Path", "")).strip(" /")
         source_file = node.metadata.get("file_name", "")
@@ -203,7 +240,34 @@ def semantic_chunk_documents(documents: list[Document]) -> list:
             node.metadata["section"] = f"{source_file} / {headers}" if source_file else headers
         else:
             node.metadata.setdefault("section", source_file or "未知文档")
+    return final_nodes
 
+
+def semantic_chunk_documents(documents: list[Document]) -> list:
+    """
+    语义切块策略：
+    ─────────────
+    1. MarkdownNodeParser：按 # / ## / ### 标题层级切分，保留文档结构语义；
+       金融合规文档天然按「章-节-条」组织，按标题切比固定 512 token 更合理。
+    2. SentenceSplitter：对过长章节做二次切分（chunk_size=384, overlap=48），
+       保证每个 chunk 可独立嵌入且上下文连贯。
+    3. chunk_type=table 的文档整块保留，不按句子切开。
+    """
+    final_nodes = []
+    buffer: list[Document] = []
+
+    def flush() -> None:
+        if buffer:
+            final_nodes.extend(_split_text_documents(buffer))
+            buffer.clear()
+
+    for document in documents:
+        if document.metadata.get("chunk_type") == "table":
+            flush()
+            final_nodes.append(_node_from_document(document))
+        else:
+            buffer.append(document)
+    flush()
     return final_nodes
 
 
@@ -222,13 +286,17 @@ def main() -> None:
 
     # 2. 初始化 Embedding
     Settings.embed_model = HuggingFaceEmbedding(
-        model_name=os.getenv("EMBED_MODEL", "BAAI/bge-small-zh-v1.5"),
+        model_name=os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5"),
     )
     print(f"[2/4] Embedding 模型: {Settings.embed_model}")
 
     # 3. 语义切块
     nodes = semantic_chunk_documents(documents)
-    print(f"[3/4] 语义切块完成: {len(nodes)} 个 chunk")
+    if _tables_enabled():
+        table_count = sum(1 for node in nodes if node.metadata.get("chunk_type") == "table")
+        print(f"[3/4] 语义切块完成: {len(nodes)} 个 chunk（表格 {table_count}，文字 {len(nodes) - table_count}）")
+    else:
+        print(f"[3/4] 语义切块完成: {len(nodes)} 个 chunk")
 
     # 4. 写入 Chroma + Docstore + BM25
     import chromadb
@@ -254,7 +322,7 @@ def main() -> None:
     storage.docstore.persist(persist_path=str(docstore_file))
     bm25 = BM25Retriever.from_defaults(
         nodes=nodes,
-        similarity_top_k=int(os.getenv("TOP_K", "10")),
+        similarity_top_k=int(os.getenv("TOP_K", "20")),
     )
     bm25.persist(str(BM25_PATH))
 
